@@ -3,741 +3,231 @@ interface Props {
 	title: string;
 }
 
-import { ViewTransitions } from 'astro:transitions';
-
 const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="pt-PT">
+<html lang="pt-BR">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Shrimp2Sink - Filtração Sustentável de Água usando Quitosana" />
+		<meta name="description" content="Andre & Barbara: Uma História de Amor" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/svg+xml" href="/heart-favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{title} | Shrimp2Sink</title>
-		<ViewTransitions />
-		<style is:global>
-			:root {
-				--primary: 0, 124, 145;
-				--secondary: 65, 157, 255;
-				--accent: 255, 127, 107;
-				--shrimp: 255, 107, 107;
-				--background: 246, 248, 251;
-				--text: 44, 62, 80;
-				--text-light: 255, 255, 255;
-				--gradient: linear-gradient(135deg, rgb(var(--primary)), rgb(var(--shrimp)));
-				--water-gradient: linear-gradient(to right, rgba(var(--primary), 0.15), rgba(var(--shrimp), 0.15));
-				--card-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
-				--transition: all 0.3s ease;
-				--container-width: 1200px;
-				--header-height: 90px;
-			}
-
-			* {
-				box-sizing: border-box;
-				margin: 0;
-				padding: 0;
-			}
-
-			html {
-				font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-				background: rgb(var(--background));
-				color: rgb(var(--text));
-				scroll-behavior: smooth;
-				overflow-y: scroll;
-				scrollbar-gutter: stable;
-			}
-
-			body {
-				margin: 0;
-				min-height: 100vh;
-				display: flex;
-				flex-direction: column;
-				overflow-x: hidden;
-				position: relative;
-				width: 100%;
-			}
-
-			main {
-				padding-top: var(--header-height);
-				min-height: 100vh;
-				width: 100%;
-			}
-
-			header {
-				background: var(--gradient);
-				box-shadow: 0 2px 15px rgba(var(--primary), 0.2);
-				position: fixed;
-				top: 0;
-				left: 0;
-				z-index: 1000;
-				height: var(--header-height);
-				width: 100%;
-				display: flex;
-				align-items: center;
-			}
-
-			nav {
-				width: 100%;
-				max-width: var(--container-width);
-				margin: 0 auto;
-				padding: 0 2rem;
-			}
-
-			.nav-content {
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-				height: var(--header-height);
-			}
-
-			.logo {
-				display: flex;
-				align-items: center;
-				text-decoration: none;
-				gap: 1rem;
-				transition: all 0.3s ease;
-				padding: 0.5rem;
-				border-radius: 12px;
-			}
-
-			.logo:hover {
-				transform: translateY(-2px);
-				background: rgba(255, 255, 255, 0.08);
-			}
-
-			.logo-circle {
-				width: 54px;
-				height: 54px;
-				border-radius: 14px;
-				object-fit: cover;
-				border: 2px solid rgba(255, 255, 255, 0.9);
-				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-				transition: all 0.3s ease;
-			}
-
-			.logo:hover .logo-circle {
-				border-color: white;
-				transform: rotate(-8deg) scale(1.05);
-				box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-			}
-
-			.logo-text {
-				font-size: 1.8rem;
-				font-weight: 700;
-				color: rgb(var(--text-light));
-				letter-spacing: 0.5px;
-				transition: all 0.3s ease;
-			}
-
-			.logo:hover .logo-text {
-				transform: translateX(2px);
-			}
-
-			.nav-links {
-				display: flex;
-				gap: 2rem;
-				align-items: center;
-				margin-right: 1rem;
-			}
-
-			.nav-links a {
-				color: rgb(var(--text-light));
-				text-decoration: none;
-				font-weight: 800;
-				font-size: 1.2rem;
-				padding: 0.8rem 1.4rem;
-				position: relative;
-				transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-				border-radius: 16px;
-				letter-spacing: 0.5px;
-				backdrop-filter: blur(10px);
-				-webkit-backdrop-filter: blur(10px);
-				border: 1px solid transparent;
-				will-change: transform, box-shadow;
-				perspective: 1000px;
-				transform-style: preserve-3d;
-			}
-
-			.nav-links a:hover {
-				transform: translateY(-3px) rotateX(4deg);
-				border-color: rgba(255, 255, 255, 0.3);
-				box-shadow: 
-					0 8px 16px rgba(0, 0, 0, 0.15),
-					0 4px 8px rgba(var(--primary), 0.2);
-			}
-
-			.nav-links a::before {
-				content: '';
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-				background: linear-gradient(
-					135deg, 
-					rgba(255, 255, 255, 0.1), 
-					rgba(255, 255, 255, 0.05)
-				);
-				border-radius: 16px;
-				opacity: 0;
-				transition: opacity 0.5s ease;
-				z-index: -1;
-			}
-
-			.nav-links a:hover::before {
-				opacity: 1;
-			}
-
-			.nav-links a::after {
-				content: '';
-				position: absolute;
-				bottom: -4px;
-				left: 50%;
-				width: 0;
-				height: 2px;
-				background: linear-gradient(
-					to right, 
-					rgba(var(--primary), 0.7), 
-					rgba(var(--shrimp), 0.7)
-				);
-				transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-				transform: translateX(-50%);
-				opacity: 0;
-			}
-
-			.nav-links a:hover::after {
-				width: 80%;
-				opacity: 1;
-			}
-
-			.nav-links a.active {
-				color: white;
-				background: rgba(255, 255, 255, 0.2);
-				border-color: rgba(255, 255, 255, 0.3);
-				box-shadow: 
-					0 6px 12px rgba(0, 0, 0, 0.1),
-					0 3px 6px rgba(var(--primary), 0.15);
-			}
-
-			.mobile-menu {
-				display: none;
-				background: none;
-				border: none;
-				cursor: pointer;
-				padding: 0.5rem;
-				z-index: 1001;
-				width: 40px;
-				height: 40px;
-				position: relative;
-			}
-
-			.mobile-menu span {
-				display: block;
-				width: 24px;
-				height: 2px;
-				background: white;
-				margin: 5px auto;
-				transition: transform 0.5s ease-in-out, opacity 0.4s ease-in-out;
-				border-radius: 2px;
-			}
-
-			@media (max-width: 768px) {
-				.mobile-menu {
-					display: flex;
-					flex-direction: column;
-					justify-content: center;
-					align-items: center;
-					width: 48px;
-					height: 48px;
-					margin-right: 1rem;
-					border-radius: 12px;
-					background: rgba(255, 255, 255, 0.1);
-					backdrop-filter: blur(10px);
-					-webkit-backdrop-filter: blur(10px);
-					transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-					z-index: 1002;
-					cursor: pointer;
-				}
-
-				.mobile-menu span {
-					display: block;
-					width: 24px;
-					height: 2px;
-					margin: 3px;
-					background: white;
-					border-radius: 4px;
-					transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-					transform-origin: center;
-				}
-
-				.mobile-menu:hover {
-					background: rgba(255, 255, 255, 0.15);
-					transform: scale(1.05);
-				}
-
-				.mobile-menu.active {
-					background: rgba(255, 255, 255, 0.2);
-				}
-
-				.mobile-menu.active span:nth-child(1) {
-					transform: translateY(8px) rotate(45deg);
-				}
-
-				.mobile-menu.active span:nth-child(2) {
-					opacity: 0;
-					transform: scale(0);
-				}
-
-				.mobile-menu.active span:nth-child(3) {
-					transform: translateY(-8px) rotate(-45deg);
-				}
-
-				.nav-overlay {
-					position: fixed;
-					top: var(--header-height);
-					left: 0;
-					width: 100%;
-					height: calc(100vh - var(--header-height));
-					background: rgba(0, 0, 0, 0.5);
-					backdrop-filter: blur(4px);
-					-webkit-backdrop-filter: blur(4px);
-					opacity: 0;
-					visibility: hidden;
-					transition: all 0.5s ease;
-					z-index: 998;
-				}
-
-				.nav-overlay.active {
-					opacity: 1;
-					visibility: visible;
-				}
-
-				.nav-links {
-					position: fixed;
-					top: var(--header-height);
-					left: 0;
-					width: 100%;
-					height: calc(100vh - var(--header-height));
-					background: var(--gradient);
-					flex-direction: column;
-					padding: 2rem;
-					gap: 1rem;
-					margin: 0;
-					transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-					overflow-y: auto;
-					z-index: 999;
-					opacity: 0;
-					visibility: hidden;
-					transform: translateY(-10px);
-				}
-
-				.nav-links.active {
-					opacity: 1;
-					visibility: visible;
-					transform: translateY(0);
-				}
-
-				.nav-links a {
-					width: 100%;
-					text-align: center;
-					font-size: 1.2rem;
-					padding: 1rem;
-					background: rgba(255, 255, 255, 0.08);
-					opacity: 0;
-					transform: translateY(20px);
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-				}
-
-				.nav-links.active a {
-					opacity: 1;
-					transform: translateY(0);
-					transition-delay: calc(var(--i) * 0.15s);
-				}
-
-				.nav-links a:hover {
-					background: rgba(255, 255, 255, 0.15);
-					transform: scale(1.02);
-				}
-			}
-
-			@media (min-width: 769px) {
-				.mobile-menu {
-					display: none;
-				}
-			}
-
-			.main-content {
-				width: 100%;
-				max-width: var(--container-width);
-				padding: 2rem;
-				margin: 2rem auto;
-				box-sizing: border-box;
-				background: rgba(255, 255, 255, 0.95);
-				border-radius: 16px;
-				box-shadow: var(--card-shadow);
-				backdrop-filter: blur(10px);
-			}
-
-			footer {
-				background: var(--gradient);
-				color: rgb(var(--text-light));
-				padding: 4rem 2rem 2rem;
-				width: 100%;
-			}
-
-			.footer-content {
-				max-width: var(--container-width);
-				margin: 0 auto;
-				display: flex;
-				justify-content: space-between;
-				gap: 8.25rem;
-				margin-bottom: 3rem;
-				padding: 0 2rem;
-			}
-
-			.footer-section {
-				flex: 1;
-				display: flex;
-				flex-direction: column;
-				gap: 1rem;
-				min-width: 200px;
-			}
-
-			.footer-section h3 {
-				color: rgb(var(--text-light));
-				margin-bottom: 1.5rem;
-				position: relative;
-				padding-bottom: 0.75rem;
-				font-size: 1.2rem;
-				letter-spacing: 0.5px;
-			}
-
-			.footer-section h3::after {
-				content: '';
-				position: absolute;
-				bottom: 0;
-				left: 0;
-				width: 40px;
-				height: 2px;
-				background: rgba(255, 255, 255, 0.5);
-			}
-
-			.footer-section p {
-				margin-bottom: 0.75rem;
-				line-height: 1.6;
-				font-size: 0.9rem;
-			}
-
-			.footer-section a {
-				color: rgba(255, 255, 255, 0.9);
-				text-decoration: none;
-				transition: var(--transition);
-				display: block;
-				margin-bottom: 1rem;
-				font-size: 0.9rem;
-			}
-
-			.footer-section a:hover {
-				color: rgb(var(--text-light));
-				transform: translateX(5px);
-			}
-
-			.footer-bottom {
-				text-align: center;
-				padding-top: 2rem;
-				border-top: 1px solid rgba(255, 255, 255, 0.2);
-				font-size: 0.95rem;
-				opacity: 0.9;
-				max-width: var(--container-width);
-				margin: 0 auto;
-			}
-
-			@media (max-width: 768px) {
-				main {
-					padding: 1rem;
-				}
-
-				.main-content {
-					width: 100%;
-					max-width: 100%;
-					padding: 1rem;
-					margin: 0 auto;
-				}
-
-				header {
-					padding: 0;
-				}
-
-				nav {
-					padding: 0 1rem;
-				}
-
-				.nav-content {
-					width: 100%;
-				}
-
-				footer {
-					padding: 3rem 1rem 1.5rem;
-				}
-
-				.footer-content {
-					flex-direction: column;
-					padding: 0 1rem;
-					gap: 2rem;
-				}
-
-				.footer-section {
-					min-width: unset;
-				}
-
-				.footer-section h3::after {
-					left: 0;
-				}
-
-				.footer-section a:hover {
-					transform: translateY(-2px);
-				}
-
-				.footer-bottom {
-					padding: 1.5rem 1rem 0;
-				}
-			}
-
-			/* Page Transition Animations */
-			::view-transition-old(root),
-			::view-transition-new(root) {
-				animation-duration: 0.65s;
-				animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-				mix-blend-mode: normal;
-				height: 100%;
-			}
-
-			/* Ensure content stays in place during transition */
-			::view-transition-group(*) {
-				animation: none;
-			}
-
-			::view-transition-old(root) {
-				animation: slide-fade-out 0.65s forwards;
-			}
-
-			::view-transition-new(root) {
-				animation: slide-fade-in 0.65s forwards;
-			}
-
-			@keyframes slide-fade-in {
-				from {
-					opacity: 0;
-					transform: translateX(2%);
-				}
-				to {
-					opacity: 1;
-					transform: translateX(0);
-				}
-			}
-
-			@keyframes slide-fade-out {
-				from {
-					opacity: 1;
-					transform: translateX(0);
-				}
-				to {
-					opacity: 0;
-					transform: translateX(-2%);
-				}
-			}
-
-			/* Additional utility classes */
-			.text-primary {
-				color: rgb(var(--primary));
-			}
-
-			.text-shrimp {
-				color: rgb(var(--shrimp));
-			}
-
-			.bg-gradient {
-				background: var(--gradient);
-			}
-
-			.button {
-				display: inline-block;
-				padding: 0.8rem 1.5rem;
-				background: var(--gradient);
-				color: white;
-				text-decoration: none;
-				border-radius: 8px;
-				font-weight: 500;
-				transition: all 0.3s ease;
-				border: none;
-				cursor: pointer;
-			}
-
-			.button:hover {
-				transform: translateY(-2px);
-				box-shadow: 0 4px 15px rgba(var(--primary), 0.3);
-			}
-
-			.card {
-				background: white;
-				padding: 2rem;
-				border-radius: 12px;
-				box-shadow: var(--card-shadow);
-				margin-bottom: 2rem;
-				border-left: 4px solid rgb(var(--shrimp));
-				transition: transform 0.3s ease, box-shadow 0.3s ease;
-				position: relative;
-				overflow: hidden;
-			}
-
-			.card::before {
-				content: '';
-				position: absolute;
-				top: 0;
-				left: 0;
-				right: 0;
-				bottom: 0;
-				background: var(--water-gradient);
-				opacity: 0;
-				transition: opacity 0.3s ease;
-			}
-
-			.card:hover::before {
-				opacity: 1;
-			}
-
-			.card:hover {
-				transform: translateY(-5px);
-				box-shadow: 0 8px 25px rgba(var(--primary), 0.2);
-			}
-
-			.card > * {
-				position: relative;
-				z-index: 1;
-			}
-
-			h1 {
-				color: rgb(var(--primary));
-				font-size: 2.5rem;
-				margin-bottom: 1.5rem;
-				line-height: 1.2;
-				position: relative;
-				padding-bottom: 0.5rem;
-			}
-
-			h1::after {
-				content: '';
-				position: absolute;
-				bottom: 0;
-				left: 0;
-				width: 100px;
-				height: 4px;
-				background: var(--gradient);
-				border-radius: 2px;
-			}
-
-			h2 {
-				color: rgb(var(--primary));
-				margin-top: 0;
-				line-height: 1.3;
-				font-size: 1.8rem;
-			}
-		</style>
-
-		<script>
-			document.addEventListener('astro:page-load', () => {
-				// Re-initialize mobile menu functionality after each navigation
-				const mobileMenu = document.querySelector('.mobile-menu');
-				const navLinks = document.querySelector('.nav-links');
-				const navOverlay = document.querySelector('.nav-overlay');
-
-				const toggleMenu = () => {
-					navLinks?.classList.toggle('active');
-					mobileMenu?.classList.toggle('active');
-					navOverlay?.classList.toggle('active');
-				};
-
-				const closeMenu = () => {
-					navLinks?.classList.remove('active');
-					mobileMenu?.classList.remove('active');
-					navOverlay?.classList.remove('active');
-				};
-
-				mobileMenu?.addEventListener('click', toggleMenu);
-				navOverlay?.addEventListener('click', closeMenu);
-
-				// Close menu when clicking a navigation link
-				navLinks?.querySelectorAll('a').forEach(link => {
-					link.addEventListener('click', closeMenu);
-				});
-
-				// Handle menu close after navigation
-				document.addEventListener('astro:after-swap', closeMenu);
-			});
-		</script>
+		<title>{title}</title>
+		
+		<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,600;0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 	</head>
 	<body>
-		<header>
-			<nav>
-				<div class="nav-content">
+		<header class="site-header">
+			<nav class="main-navigation">
+				<div class="logo-container">
 					<a href="/" class="logo">
-						<img src="/logo.JPG" alt="Shrimp2Sink logo" class="logo-circle" />
-						<span class="logo-text">Shrimp2Sink</span>
+						<span class="logo-text">A&B</span>
+						<svg class="heart-icon" viewBox="0 0 24 24" fill="currentColor">
+							<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+						</svg>
 					</a>
-					<button class="mobile-menu" aria-label="Menu">
-						<span></span>
-						<span></span>
-						<span></span>
-					</button>
-					<div class="nav-links">
-						<a href="/" style="--i: 0;">Início</a>
-						<a href="/team" style="--i: 1;">Equipa</a>
-						<a href="/results" style="--i: 2;">Resultados</a>
-						<a href="/partnerships" style="--i: 3;">Parcerias</a>
-						<a href="/resources" style="--i: 4;">Recursos</a>
-						<a href="/about" style="--i: 5;">Sobre</a>
-					</div>
 				</div>
+				<ul class="nav-links">
+					<li><a href="/" class="nav-link">Nossa História</a></li>
+					<li><a href="/moments" class="nav-link">Momentos</a></li>
+					<li><a href="/love-letters" class="nav-link">Cartas de Amor</a></li>
+					<li><a href="/about" class="nav-link">Sobre Nós</a></li>
+				</ul>
 			</nav>
-			<div class="nav-overlay"></div>
 		</header>
+
 		<main>
-			<div class="main-content">
-				<slot />
-			</div>
+			<slot />
 		</main>
-		<footer>
+
+		<footer class="site-footer">
 			<div class="footer-content">
-				<div class="footer-section">
-					<h3>Shrimp2Sink</h3>
-					<p>Transformando resíduos em soluções sustentáveis para filtração de água.</p>
+				<div class="footer-love">
+					<p>Andre & Barbara {new Date().getFullYear()}</p>
+					<p>Uma história de amor além das fronteiras</p>
 				</div>
-				<div class="footer-section">
-					<h3>Contacto:</h3>
-					<p>Email: shrimp2sink@gmail.com</p>
-					<p>Tel: +351 912806094</p>
+				<div class="footer-links">
+					<a href="#" class="social-link">Instagram</a>
+					<a href="#" class="social-link">Email</a>
 				</div>
-				<div class="footer-section">
-					<h3>Parcerias</h3>
-					<a href="#" target="_blank">Restaurante</a>
-					<a href="https://sigarra.up.pt/fcup/pt/func_geral.formview?p_codigo=500924" target="_blank">Prof. Andreia Peixoto</a>
-					<a href="https://sigarra.up.pt/fcup/pt/func_geral.formview?p_codigo=504986" target="_blank">Prof. Carlos Granadeiro</a>
-				</div>
-				<div class="footer-section">
-					<h3>Redes Sociais</h3>
-					<a href="https://www.instagram.com/shrimp2sink/profile/?igsh=MWNkdjBrcmtmZDB6Zw==" target="_blank">Instagram</a>
-					<a href="http://www.youtube.com/@shrimp2sink" target="_blank">YouTube</a>
-				</div>
-			</div>
-			<div class="footer-bottom">
-				<p>&copy; {new Date().getFullYear()} Shrimp2Sink. Todos os direitos reservados.</p>
 			</div>
 		</footer>
 	</body>
 </html>
+
+<style>
+	:root {
+		--deep-red: #8B0000;
+		--rich-crimson: #DC143C;
+		--elegant-burgundy: #800020;
+		--soft-rose: #FFB6C1;
+		--romantic-cream: #FFF5EE;
+		--text-color: #2C0E0E;
+		--accent-gold: #DAA520;
+	}
+
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+
+	html {
+		font-family: 'Libre Baskerville', serif;
+		background-color: var(--romantic-cream);
+		color: var(--text-color);
+		line-height: 1.6;
+	}
+
+	.site-header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		background-color: rgba(255, 245, 238, 0.95);
+		box-shadow: 0 2px 10px rgba(128, 0, 32, 0.05);
+		z-index: 1000;
+	}
+
+	.main-navigation {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 1rem 2rem;
+	}
+
+	.logo-container {
+		display: flex;
+		align-items: center;
+	}
+
+	.logo {
+		display: flex;
+		align-items: center;
+		text-decoration: none;
+		color: var(--deep-red);
+		transition: transform 0.3s ease;
+	}
+
+	.logo:hover {
+		transform: scale(1.05);
+	}
+
+	.logo-text {
+		font-family: 'Bodoni Moda', serif;
+		font-size: 2rem;
+		font-weight: 700;
+		margin-right: 0.5rem;
+	}
+
+	.heart-icon {
+		width: 30px;
+		height: 30px;
+		color: var(--rich-crimson);
+	}
+
+	.nav-links {
+		display: flex;
+		list-style: none;
+		gap: 2rem;
+	}
+
+	.nav-link {
+		text-decoration: none;
+		color: var(--elegant-burgundy);
+		font-family: 'Bodoni Moda', serif;
+		font-weight: 600;
+		position: relative;
+		transition: color 0.3s ease;
+	}
+
+	.nav-link::after {
+		content: '';
+		position: absolute;
+		width: 0;
+		height: 2px;
+		bottom: -5px;
+		left: 50%;
+		background-color: var(--rich-crimson);
+		transition: width 0.3s ease, left 0.3s ease;
+	}
+
+	.nav-link:hover {
+		color: var(--rich-crimson);
+	}
+
+	.nav-link:hover::after {
+		width: 100%;
+		left: 0;
+	}
+
+	main {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 6rem 2rem 2rem;
+	}
+
+	.site-footer {
+		background-color: var(--deep-red);
+		color: var(--romantic-cream);
+		padding: 2rem;
+		margin-top: 4rem;
+	}
+
+	.footer-content {
+		max-width: 1200px;
+		margin: 0 auto;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.footer-love {
+		text-align: left;
+	}
+
+	.footer-love p {
+		font-family: 'Bodoni Moda', serif;
+		margin-bottom: 0.5rem;
+	}
+
+	.footer-links {
+		display: flex;
+		gap: 1.5rem;
+	}
+
+	.social-link {
+		color: var(--soft-rose);
+		text-decoration: none;
+		font-family: 'Libre Baskerville', serif;
+		transition: color 0.3s ease;
+	}
+
+	.social-link:hover {
+		color: var(--romantic-cream);
+	}
+
+	@media (max-width: 768px) {
+		.main-navigation {
+			flex-direction: column;
+			padding: 1rem;
+		}
+
+		.nav-links {
+			margin-top: 1rem;
+			flex-direction: column;
+			align-items: center;
+			gap: 1rem;
+		}
+
+		.footer-content {
+			flex-direction: column;
+			text-align: center;
+			gap: 1rem;
+		}
+	}
+</style>
