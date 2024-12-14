@@ -82,6 +82,17 @@ import Layout from '../layouts/Layout.astro';
             </div>
         </section>
 
+        <section class="about-container">
+            <h1>Nossa História</h1>
+            <p>Bem-vindos ao nosso espaço especial! Somos Andre e Barbara, e esta é a nossa história de amor.</p>
+            <p>Tudo começou em um belo dia quando nos conhecemos em uma cafeteria. A partir desse momento, sabíamos que estávamos destinados a ficar juntos.</p>
+            <h2>Nossa Jornada</h2>
+            <p>Ao longo dos anos, criamos inúmeras memórias juntos, desde viagens a novos lugares até noites tranquilas em casa.</p>
+            <h2>O que Valorizamos</h2>
+            <p>Acreditamos no amor, na risada e nas pequenas coisas que tornam a vida bonita. Nossa jornada está repleta de aventuras, e estamos ansiosos para compartilhá-la com você.</p>
+            <img src="/images/our_story.jpg" alt="Nossa História" class="about-image" />
+        </section>
+
         <section class="love-philosophy">
             <blockquote>
                 "Nosso amor é uma ponte entre dois mundos. 
@@ -319,6 +330,20 @@ import Layout from '../layouts/Layout.astro';
 
     .moment-card:hover .moment-overlay {
         opacity: 1;
+    }
+
+    .about-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+        text-align: center;
+    }
+
+    .about-image {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        margin-top: 1rem;
     }
 
     .love-philosophy {

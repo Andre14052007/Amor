@@ -1,0 +1,46 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Depoimentos">
+    <div class="testimonials-container">
+        <h1>O Que Nossos Amigos Dizem</h1>
+        <blockquote>
+            "Andre e Barbara são um par perfeito! O amor deles é inspirador!"
+            <footer>- Amigo 1</footer>
+        </blockquote>
+        <blockquote>
+            "Nunca vi duas pessoas tão apaixonadas. A jornada deles é linda!"
+            <footer>- Amigo 2</footer>
+        </blockquote>
+        <blockquote>
+            "A história deles é um testemunho do verdadeiro amor e amizade."
+            <footer>- Membro da Família</footer>
+        </blockquote>
+    </div>
+</Layout>
+
+<style>
+.testimonials-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+blockquote {
+    font-style: italic;
+    margin: 1.5rem 0;
+    padding: 1rem;
+    border-left: 4px solid var(--rich-crimson);
+    color: var(--elegant-burgundy);
+}
+
+footer {
+    font-weight: bold;
+    color: var(--rich-crimson);
+}
+</style>

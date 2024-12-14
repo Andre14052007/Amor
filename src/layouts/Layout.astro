@@ -17,6 +17,7 @@ const { title } = Astro.props;
 		<title>{title}</title>
 		
 		<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,600;0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="/styles/global.css">
 	</head>
 	<body>
 		<header class="site-header">
@@ -30,10 +31,10 @@ const { title } = Astro.props;
 					</a>
 				</div>
 				<ul class="nav-links">
-					<li><a href="/" class="nav-link">Nossa História</a></li>
-					<li><a href="/moments" class="nav-link">Momentos</a></li>
-					<li><a href="/love-letters" class="nav-link">Cartas de Amor</a></li>
-					<li><a href="/about" class="nav-link">Sobre Nós</a></li>
+					<li><a href="/" class="button">Início</a></li>
+					<li><a href="/about" class="button">Sobre Nós</a></li>
+					<li><a href="/gallery" class="button">Galeria</a></li>
+					<li><a href="/testimonials" class="button">Depoimentos</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -136,33 +137,18 @@ const { title } = Astro.props;
 		gap: 2rem;
 	}
 
-	.nav-link {
-		text-decoration: none;
-		color: var(--elegant-burgundy);
-		font-family: 'Bodoni Moda', serif;
-		font-weight: 600;
-		position: relative;
-		transition: color 0.3s ease;
+	.button {
+		background-color: var(--elegant-burgundy);
+		color: var(--romantic-cream);
+		border: none;
+		padding: 0.5rem 1rem;
+		border-radius: 0.5rem;
+		cursor: pointer;
+		transition: background-color 0.3s ease;
 	}
 
-	.nav-link::after {
-		content: '';
-		position: absolute;
-		width: 0;
-		height: 2px;
-		bottom: -5px;
-		left: 50%;
+	.button:hover {
 		background-color: var(--rich-crimson);
-		transition: width 0.3s ease, left 0.3s ease;
-	}
-
-	.nav-link:hover {
-		color: var(--rich-crimson);
-	}
-
-	.nav-link:hover::after {
-		width: 100%;
-		left: 0;
 	}
 
 	main {

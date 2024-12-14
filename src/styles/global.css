@@ -1,0 +1,133 @@
+/* Global Styles */
+:root {
+    --color-primary: #3498db;
+    --color-secondary: #2ecc71;
+    --color-background: #f4f4f4;
+    --color-text: #333;
+    --rich-crimson: #8B0A1A;
+    --elegant-burgundy: #632616;
+}
+
+body {
+    font-family: 'Libre Baskerville', serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3 {
+    margin: 0;
+    padding: 0;
+    color: var(--rich-crimson);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav {
+    background-color: var(--elegant-burgundy);
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav a {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 15px 25px;
+    border-radius: 10px;
+    background-color: var(--rich-crimson);
+    transition: background-color 0.3s, transform 0.3s;
+    font-family: 'Libre Baskerville', serif;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+nav a:hover {
+    transform: translateY(-2px);
+    background-color: var(--elegant-burgundy);
+}
+
+nav a.active {
+    background-color: var(--rich-crimson);
+    font-weight: bold;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--color-primary);
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: darken(var(--color-primary), 10%);
+}
+
+.testimonials-container, .contact-container, .love-story-container {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+blockquote {
+    border-left: 4px solid var(--rich-crimson);
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    color: var(--elegant-burgundy);
+}
+
+footer {
+    font-weight: bold;
+    color: var(--rich-crimson);
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+    button {
+        width: 100%;
+    }
+}

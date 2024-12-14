@@ -2,71 +2,112 @@
 import Layout from '../layouts/Layout.astro';
 
 const images = [
-    { src: '/Andre1.0.jpg', alt: 'Andre', caption: 'My Love' },
-    { src: '/barbara1.0.jpeg', alt: 'Barbara', caption: 'My Everything' },
-    { src: '/couple1.jpg', alt: 'Us Together', caption: 'Our First Date' },
-    { src: '/couple2.jpg', alt: 'Romantic Moment', caption: 'Sunset Memories' },
-    { src: '/couple3.jpg', alt: 'Adventure', caption: 'Exploring Together' }
+    { src: '/Andre1.0.jpg', alt: 'Andre', caption: 'Meu Amor' },
+    { src: '/barbara1.0.jpeg', alt: 'Barbara', caption: 'Meu Tudo' },
+    { src: '/couple1.jpg', alt: 'Us Together', caption: 'Nós Juntos' },
+    { src: '/couple2.jpg', alt: 'Romantic Moment', caption: 'Memórias do Pôr do Sol' },
+    { src: '/couple3.jpg', alt: 'Adventure', caption: 'Explorando Juntos' }
 ];
 ---
 
-<Layout title="Andre & Barbara: Our Gallery">
+<Layout title="Andre & Barbara: Nossa Galeria">
     <div class="gallery-container">
-        <h1>Moments We Treasure</h1>
+        <h1>Momentos Que Valorizamos</h1>
         <div class="gallery-grid">
-            {images.map((image) => (
+            {images.map((image, index) => (
                 <div class="gallery-item">
-                    <img src={image.src} alt={image.alt} class="gallery-image"/>
+                    <img src={image.src} alt={image.alt} class="gallery-image" onclick={`openLightbox(${index})`} />
                     <p class="image-caption">{image.caption}</p>
                 </div>
             ))}
         </div>
     </div>
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="close">&times;</span>
+        <div class="lightbox-content">
+            <img class="lightbox-image" id="lightbox-img" />
+        </div>
+    </div>
 </Layout>
 
+<script>
+function openLightbox(index) {
+    document.getElementById('lightbox').style.display = 'block';
+    var img = document.getElementsByClassName('gallery-image')[index];
+    document.getElementById('lightbox-img').src = img.src;
+}
+
+function closeLightbox() {
+    document.getElementById('lightbox').style.display = 'none';
+}
+</script>
+
 <style>
-    .gallery-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 4rem 2rem;
-        background-color: var(--color-background);
-    }
-
-    h1 {
-        text-align: center;
-        color: var(--color-primary);
-        font-size: 3rem;
-        margin-bottom: 3rem;
-    }
-
-    .gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 2rem;
-    }
-
-    .gallery-item {
-        background-color: rgba(255, 255, 255, 0.7);
-        border-radius: 15px;
-        overflow: hidden;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease;
-    }
-
-    .gallery-item:hover {
-        transform: scale(1.05);
-    }
-
-    .gallery-image {
-        width: 100%;
-        height: 300px;
-        object-fit: cover;
-    }
-
-    .image-caption {
-        text-align: center;
-        padding: 1rem;
-        color: var(--color-text);
-        font-style: italic;
-    }
+.gallery-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    background-color: var(--color-background);
+}
+h1 {
+    text-align: center;
+    color: var(--color-primary);
+    font-size: 3rem;
+    margin-bottom: 3rem;
+}
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+}
+.gallery-item {
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+.gallery-item:hover {
+    transform: scale(1.05);
+}
+.gallery-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    cursor: pointer;
+}
+.image-caption {
+    text-align: center;
+    padding: 1rem;
+    color: var(--color-text);
+    font-style: italic;
+}
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+}
+.lightbox-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.lightbox-image {
+    max-width: 90%;
+    max-height: 80%;
+}
+.close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+}
 </style>
