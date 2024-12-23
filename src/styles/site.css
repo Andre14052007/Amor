@@ -1,0 +1,34 @@
+:root {
+    --primary-color: #D2203C;
+    --secondary-color: #FFB6C1;
+    --accent-color: #FFFFFF;
+    --font-heading: 'Bodoni Moda', serif;
+    --font-body: 'Libre Baskerville', serif;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--primary-color);
+    margin: 0;
+    padding: 0;
+    background-color: var(--secondary-color);
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+}
+
+button {
+    background-color: var(--primary-color);
+    color: var(--accent-color);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+}

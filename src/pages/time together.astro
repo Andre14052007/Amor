@@ -5,9 +5,8 @@ import Layout from '../layouts/Layout.astro';
 <Layout title="Tempo Juntos">
     <main class="time-together-container">
         <section class="hero-section">
-            <div class="hero-overlay"></div>
             <div class="hero-content">
-                <h1>Amando-nos um ao outro desde</h1>
+                <h1>Amando-nos um ao outro desde:</h1>
                 <h2>3 de Novembro de 2023</h2>
                 <p class="hero-subtitle">Uma jornada de amor e paixão</p>
             </div>
@@ -42,29 +41,27 @@ import Layout from '../layouts/Layout.astro';
 
         .hero-section {
             position: relative;
-            background-image: url('/path/to/your/love-background.jpg'); /* Replace with your image */
-            background-size: cover;
-            background-position: center;
+            background: linear-gradient(
+                135deg, 
+                rgba(220, 20, 60, 0.1), 
+                rgba(255, 182, 193, 0.05)
+            );
             padding: 4rem 0;
-            color: white;
+            color: var(--elegant-burgundy);
             border-radius: 15px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
 
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-            border-radius: 15px;
-        }
-
         .hero-content {
             position: relative;
-            z-index: 1;
-            text-align: center;
+            z-index: 2;
+        }
+
+        .hero-subtitle {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.7rem;
+            color: var(--deep-red);
+            font-style: italic;
         }
 
         h1 {
@@ -77,13 +74,6 @@ import Layout from '../layouts/Layout.astro';
         h2 {
             font-size: 2.2rem;
             margin-top: 0.5rem;
-        }
-
-        .hero-subtitle {
-            font-size: 1.6rem;
-            margin-top: 0.5rem;
-            font-style: italic;
-            color: #f0e68c;
         }
 
         .days-loving-container {
