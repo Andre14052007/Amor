@@ -17,30 +17,24 @@ const { title } = Astro.props;
 		<title>{title}</title>
 		
 		<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,600;0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-		<link rel="stylesheet" href="/styles/global.css">
-		<link rel="stylesheet" href="/styles/site.css">
-		<link rel="stylesheet" href="/styles/enhanced.css">
 	</head>
 	<body>
 		<header class="site-header">
-					<a href="/" class="site-title">Andre <span class="heart">❤</span> Barbara</a>
-					<a href="/" class="nav-link">Início</a>
-					<a href="/about" class="nav-link">Sobre Nós</a>
-					<a href="/gallery" class="nav-link">Galeria</a>
-					<a href="/time&together" class="nav-link">Tempo Juntos</a>
-				</nav>
-			</div>
+			<a href="/" class="site-title">Andre <span class="heart">❤</span> Barbara</a>
+			<nav class="site-nav">
+				<a href="/" class="nav-link">Início</a>
+				<a href="/about" class="nav-link">Sobre Nós</a>
+				<a href="/gallery" class="nav-link">Galeria</a>
+				<a href="/time%20together" class="nav-link">Tempo Juntos</a>
+			</nav>
 		</header>
 
-		<main>
+		<div class="content-wrapper">
 			<slot />
-		</main>
+		</div>
 
 		<footer class="site-footer">
-			<p> Andre <span class="heart">❤</span> Barbara</p>
-			
-				
-			</div>
+			<p>Andre <span class="heart">❤</span> Barbara</p>
 		</footer>
 		<script is:inline src="/scripts/main.js"></script>
 	</body>
@@ -52,11 +46,6 @@ const { title } = Astro.props;
 		--rich-crimson: #DC143C;
 		--elegant-burgundy: #800020;
 		--soft-rose: #FFB6C1;
-		--romantic-cream: #FFF5EE;
-		--text-color: #2C0E0E;
-		--accent-gold: #DAA520;
-		--primary-color: #8B0A1A;
-		--accent-color: #FFF5EE;
 	}
 
 	* {
@@ -67,92 +56,104 @@ const { title } = Astro.props;
 
 	html {
 		font-family: 'Libre Baskerville', serif;
-		background-color: var(--romantic-cream);
-		color: var(--text-color);
-		line-height: 1.6;
+		background: #fff;
+		color: var(--elegant-burgundy);
+	}
+
+	body {
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
 	}
 
 	.site-header {
 		position: fixed;
 		top: 0;
-		left: 1;
+		left: 0;
 		width: 100%;
-		background-color: rgba(255, 245, 238, 0.95);
-		box-shadow: 0 2px 10px rgba(128, 0, 32, 0.05);
+		background: rgba(255, 245, 238, 0.95);
+		box-shadow: 0 2px 10px rgba(128, 0, 32, 0.1);
 		z-index: 1000;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		padding: 1rem 6rem;
+		backdrop-filter: blur(8px);
+	}
+
+	.site-nav {
+		display: flex;
+		gap: 2rem;
+		align-items: center;
 	}
 
 	.site-title {
 		font-family: 'Bodoni Moda', serif;
 		font-size: 2.5rem;
-		font-weight: 700;
 		color: var(--deep-red);
 		text-decoration: none;
-		;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
 	}
 
-	.logo {
-		margin: 0 2rem;
-	}
-
-	.logo h1 {
-		font-family: 'Bodoni Moda', serif;
+	.heart {
+		color: var(--rich-crimson);
 		font-size: 2rem;
-		font-weight: 700;
-		color: var(--deep-red);
 	}
 
-	main {
-		max-width: 1200px;
-		margin: 0 auto;
-		padding: 6rem 2rem 2rem;
+	.nav-link {
+		color: var(--deep-red);
+		text-decoration: none;
+		font-size: 1.1rem;
+		font-family: 'Libre Baskerville', serif;
+		padding: 0.5rem 1rem;
+		border-radius: 4px;
+		transition: all 0.3s ease;
+	}
+
+	.nav-link:hover {
+		background-color: rgba(139, 0, 0, 0.1);
+	}
+
+	.content-wrapper {
+		flex: 1;
+		margin-top: 5rem;
+		width: 100%;
+		position: relative;
+		z-index: 1;
 	}
 
 	.site-footer {
-		background-color: var(--deep-red);
-		color: var(--romantic-cream);
-		padding: 2rem;
-		margin-top: 4rem;
 		text-align: center;
-	}
-
-	.social-media {
-		margin-top: 1rem;
-	}
-
-	.social-media a {
-		color: var(--soft-rose);
-		text-decoration: none;
-		font-family: 'Libre Baskerville', serif;
-		transition: color 0.3s ease;
-		margin: 0 1rem;
-	}
-
-	.social-media a:hover {
-		color: var(--romantic-cream);
+		padding: 2rem;
+		background: rgba(255, 245, 238, 0.95);
+		color: var(--deep-red);
+		font-family: 'Bodoni Moda', serif;
+		font-size: 1.2rem;
 	}
 
 	@media (max-width: 768px) {
 		.site-header {
+			padding: 1rem 2rem;
 			flex-direction: column;
-			padding: 1rem;
+			gap: 1rem;
 		}
 
 		.site-nav {
-			flex-direction: column;
-			align-items: center;
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: center;
+			gap: 1rem;
+			width: 100%;
 		}
 
-		.site-nav a {
-			margin: 1rem 0;
+		.site-title {
+			font-size: 2rem;
 		}
 
-		.logo {
-			margin: 1rem 0;
+		.content-wrapper {
+			margin-top: 8rem;
 		}
 	}
 </style>

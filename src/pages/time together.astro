@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Tempo Juntos">
-    <main class="time-together-container">
+    <div class="time-together-container">
         <section class="hero-section">
             <div class="hero-content">
                 <h1>Amando-nos um ao outro desde:</h1>
@@ -16,103 +16,139 @@ import Layout from '../layouts/Layout.astro';
             <h3>Cada dia que passa amamo-nos mais.</h3>
             <p id="days-loving"><span id="days-count"></span> dias de amor e carinho</p>
         </section>
-    </main>
+    </div>
+</Layout>
 
-    <script>
-        const startDate = new Date(2023, 10, 3); // November 3, 2023
-        const today = new Date();
-        const timeDifference = today.getTime() - startDate.getTime();
-        const daysLoving = Math.max(0, Math.floor(timeDifference / (1000 * 60 * 60 * 24))); // Ensure non-negative
-        const daysCountElement = document.getElementById('days-count');
-        if (daysCountElement) {
-            daysCountElement.innerText = daysLoving.toString(); // or `${daysLoving}`
-        } else {
-            console.error('Element with ID "days-count" not found.');
-        }
-    </script>
+<script>
+    const startDate = new Date(2023, 10, 3);
+    const today = new Date();
+    const timeDifference = today.getTime() - startDate.getTime();
+    const daysLoving = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    const daysCountElement = document.getElementById('days-count');
+    if (daysCountElement) {
+        daysCountElement.innerText = daysLoving.toString();
+    }
+</script>
 
-    <style>
+<style>
+    .time-together-container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+
+    .hero-section {
+        background: linear-gradient(135deg, rgba(139, 0, 0, 0.05), rgba(255, 182, 193, 0.1));
+        border-radius: 15px;
+        padding: 4rem 2rem;
+        text-align: center;
+        margin-bottom: 3rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero-content {
+        max-width: 800px;
+        margin: 0 auto;
+        background: rgba(255, 255, 255, 0.95);
+        padding: 3rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(139, 0, 0, 0.1);
+        border: 1px solid rgba(139, 0, 0, 0.1);
+    }
+
+    h1 {
+        font-size: 3.2rem;
+        color: var(--deep-red);
+        margin-bottom: 1.5rem;
+        font-family: 'Bodoni Moda', serif;
+        font-weight: 700;
+    }
+
+    h2 {
+        font-size: 2.6rem;
+        color: var(--rich-crimson);
+        margin-bottom: 1.5rem;
+        font-family: 'Bodoni Moda', serif;
+        font-weight: 600;
+    }
+
+    .hero-subtitle {
+        font-size: 1.8rem;
+        color: var(--elegant-burgundy);
+        font-style: italic;
+        margin-bottom: 2rem;
+        font-family: 'Libre Baskerville', serif;
+    }
+
+    .days-loving-container {
+        background: linear-gradient(135deg, #fff, rgba(255, 182, 193, 0.2));
+        padding: 3rem;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 4px 20px rgba(139, 0, 0, 0.1);
+        border: 1px solid rgba(139, 0, 0, 0.1);
+    }
+
+    .days-loving-container h3 {
+        font-size: 2.2rem;
+        color: var(--deep-red);
+        margin-bottom: 1.5rem;
+        font-family: 'Bodoni Moda', serif;
+        font-weight: 600;
+    }
+
+    #days-loving {
+        font-size: 1.8rem;
+        color: var(--elegant-burgundy);
+        font-family: 'Libre Baskerville', serif;
+    }
+
+    #days-count {
+        font-size: 2.4rem;
+        font-weight: bold;
+        color: var(--rich-crimson);
+    }
+
+    @media (max-width: 768px) {
         .time-together-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem;
-            text-align: center;
+            padding: 1rem;
         }
 
         .hero-section {
-            position: relative;
-            background: linear-gradient(
-                135deg, 
-                rgba(220, 20, 60, 0.1), 
-                rgba(255, 182, 193, 0.05)
-            );
-            padding: 4rem 0;
-            color: var(--elegant-burgundy);
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            padding: 2rem 1rem;
         }
 
         .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-subtitle {
-            font-family: 'Libre Baskerville', serif;
-            font-size: 1.7rem;
-            color: var(--deep-red);
-            font-style: italic;
-        }
-
-        button {
-            margin-top: 1rem;
-            padding: 10px 20px;
-            background-color: var(--primary-color);
-            color: var(--accent-color);
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        button:hover {
-            background-color: var(--accent-color);
-            color: var(--primary-color);
+            padding: 2rem;
         }
 
         h1 {
-            font-size: 2.8rem;
-            color: var(--rich-crimson);
-            margin: 0;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-size: 2.4rem;
         }
 
         h2 {
-            font-size: 2.2rem;
-            margin-top: 0.5rem;
+            font-size: 2rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
         }
 
         .days-loving-container {
-            margin-top: 2rem;
-            padding: 1rem;
-            background-color: #f9f9f9;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
+            padding: 2rem;
         }
 
-        .days-loving-container:hover {
-            transform: scale(1.02);
-        }
-
-        h3 {
-            color: var(--rich-crimson);
+        .days-loving-container h3 {
             font-size: 1.8rem;
         }
 
-        p {
-            font-size: 1.5rem;
-            color: var(--dark-gray);
+        #days-loving {
+            font-size: 1.4rem;
         }
-    </style>
-</Layout>
+
+        #days-count {
+            font-size: 2rem;
+        }
+    }
+</style>
