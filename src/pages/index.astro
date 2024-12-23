@@ -8,38 +8,42 @@ import Layout from '../layouts/Layout.astro';
             <div class="hero-overlay"></div>
             <div class="hero-content">
                 <h1 class="lovers-name">Andre <span class="heart">❤</span> Barbara</h1>
-                <p class="love-quote">Uma história de amor além das fronteiras</p>
+                <p class="love-quote">Uma história de amor e paixão </p>
             </div>
         </section>
 
         <section class="moments-gallery">
             <div class="gallery-grid">
                 <div class="gallery-item large">
-                    <img src="/couple1.jpg" alt="Primeiro Encontro" />
-                    <div class="overlay">
-                        <h3>Primeiro Encontro</h3>
-                        <p>O momento que mudou tudo</p>
+                    <div class="slideshow-container">
+                        <img class="mySlides" src="/couple1.jpg" alt="Primeiro Encontro" />
+                        <img class="mySlides" src="/couple2.jpg" alt="Momentos Especiais" />
+                        <img class="mySlides" src="/couple3.jpg" alt="Outro Momento" />
+                        <div class="overlay">
+                            <h3>Memórias</h3>
+                            <p>Cada instante, uma memória</p>
+                        </div>
                     </div>
                 </div>
                 <div class="gallery-item">
                     <img src="/Andre1.0.jpg" alt="Andre" />
                     <div class="overlay">
                         <h3>Andre</h3>
-                        <p>Português</p>
+                        <p>O amor da vida dela</p>
                     </div>
                 </div>
                 <div class="gallery-item">
                     <img src="/barbara1.0.jpeg" alt="Barbara" />
                     <div class="overlay">
                         <h3>Barbara</h3>
-                        <p>Brasileira</p>
+                        <p>O amor da vida dele</p>
                     </div>
                 </div>
                 <div class="gallery-item large">
-                    <img src="/couple2.jpg" alt="Momentos Especiais" />
+                    <img src="/couple4.jpg" alt="Momentos Especiais" />
                     <div class="overlay">
-                        <h3>Momentos Especiais</h3>
-                        <p>Cada instante, uma memória</p>
+                        <h3>Nós Juntinhos</h3>
+                        <p>Um momento de muitos</p>
                     </div>
                 </div>
             </div>
@@ -48,191 +52,230 @@ import Layout from '../layouts/Layout.astro';
         <section class="love-philosophy">
             <div class="philosophy-content">
                 <blockquote>
-                    "Nosso amor transcende línguas, culturas e fronteiras. 
+                    "O nosso amor transcende línguas, culturas e fronteiras. 
                     Somos a prova de que o amor verdadeiro não conhece limites."
                 </blockquote>
             </div>
         </section>
     </main>
-</Layout>
 
-<style>
-    .love-story-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 2rem;
-    }
+    <script>
+        let slideIndex = 0;
+        showSlides();
 
-    .hero-section {
-        position: relative;
-        height: 60vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        color: var(--elegant-burgundy);
-        margin-bottom: 4rem;
-        border-radius: 15px;
-        overflow: hidden;
-    }
+        function showSlides() {
+            let i;
+            const slides = document.getElementsByClassName("mySlides");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}    
+            slides[slideIndex-1].style.display = "block";  
+            setTimeout(showSlides, 4000); // Change image every 4 seconds
+        }
+    </script>
 
-    .hero-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-            135deg, 
-            rgba(220, 20, 60, 0.1), 
-            rgba(255, 182, 193, 0.05)
-        );
-        z-index: 1;
-    }
-
-    .hero-content {
-        position: relative;
-        z-index: 2;
-    }
-
-    .lovers-name {
-        font-family: 'Bodoni Moda', serif;
-        font-size: 4.5rem;
-        margin-bottom: 1rem;
-        letter-spacing: 2px;
-        font-weight: 700;
-    }
-
-    .heart {
-        color: var(--deep-red);
-        margin: 0 0.5rem;
-        animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.2); }
-    }
-
-    .love-quote {
-        font-family: 'Libre Baskerville', serif;
-        font-size: 1.7rem;
-        color: var(--elegant-burgundy);
-        font-style: italic;
-    }
-
-    .moments-gallery {
-        margin-bottom: 4rem;
-    }
-
-    .gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 1.5rem;
-        grid-auto-rows: minmax(250px, auto);
-    }
-
-    .gallery-item {
-        position: relative;
-        overflow: hidden;
-        border-radius: 15px;
-        box-shadow: 0 6px 12px rgba(128, 0, 32, 0.1);
-        transition: transform 0.4s ease, box-shadow 0.4s ease;
-    }
-
-    .gallery-item:hover {
-        transform: scale(1.03);
-        box-shadow: 0 10px 20px rgba(128, 0, 32, 0.2);
-    }
-
-    .gallery-item.large {
-        grid-column: span 2;
-    }
-
-    .gallery-item img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.4s ease;
-    }
-
-    .gallery-item .overlay {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background: linear-gradient(to top, rgba(128, 0, 32, 0.8), transparent);
-        color: white;
-        padding: 1.5rem;
-        opacity: 0;
-        transition: opacity 0.4s ease;
-    }
-
-    .gallery-item:hover .overlay {
-        opacity: 1;
-    }
-
-    .love-philosophy {
-        text-align: center;
-        padding: 4rem 2rem;
-        background: linear-gradient(
-            135deg, 
-            rgba(220, 20, 60, 0.05), 
-            rgba(255, 182, 193, 0.03)
-        );
-        border-radius: 15px;
-    }
-
-    .love-philosophy blockquote {
-        font-family: 'Bodoni Moda', serif;
-        font-size: 2.5rem;
-        color: var(--deep-red);
-        max-width: 900px;
-        margin: 0 auto;
-        line-height: 1.4;
-        font-style: italic;
-        position: relative;
-        padding: 0 2rem;
-    }
-
-    .love-philosophy blockquote::before,
-    .love-philosophy blockquote::after {
-        content: '"';
-        position: absolute;
-        font-size: 4rem;
-        color: var(--elegant-burgundy);
-        opacity: 0.3;
-    }
-
-    .love-philosophy blockquote::before {
-        left: -1rem;
-        top: -1rem;
-    }
-
-    .love-philosophy blockquote::after {
-        right: -1rem;
-        bottom: -2rem;
-    }
-
-    @media (max-width: 768px) {
-        .gallery-grid {
-            grid-template-columns: 1fr;
+    <style>
+        .love-story-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
         }
 
-        .gallery-item.large {
-            grid-column: span 1;
+        .hero-section {
+            position: relative;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--elegant-burgundy);
+            margin-bottom: 4rem;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg, 
+                rgba(220, 20, 60, 0.1), 
+                rgba(255, 182, 193, 0.05)
+            );
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
         }
 
         .lovers-name {
-            font-size: 3rem;
+            font-family: 'Bodoni Moda', serif;
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        .heart {
+            color: var(--deep-red);
+            margin: 0 0.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
         }
 
         .love-quote {
-            font-size: 1.3rem;
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.7rem;
+            color: var(--elegant-burgundy);
+            font-style: italic;
+        }
+
+        .moments-gallery {
+            margin-bottom: 4rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            grid-auto-rows: minmax(250px, auto);
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(128, 0, 32, 0.1);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 20px rgba(128, 0, 32, 0.2);
+        }
+
+        .gallery-item.large {
+            grid-column: span 2;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(128, 0, 32, 0.8), transparent);
+            color: white;
+            padding: 1.5rem;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            margin: auto;
+        }
+
+        .mySlides {
+            display: none;
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .overlay {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .love-philosophy {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(
+                135deg, 
+                rgba(220, 20, 60, 0.05), 
+                rgba(255, 182, 193, 0.03)
+            );
+            border-radius: 15px;
         }
 
         .love-philosophy blockquote {
-            font-size: 2rem;
+            font-family: 'Bodoni Moda', serif;
+            font-size: 2.5rem;
+            color: var(--deep-red);
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.4;
+            font-style: italic;
+            position: relative;
+            padding: 0 2rem;
         }
-    }
-</style>
+
+        .love-philosophy blockquote::before,
+        .love-philosophy blockquote::after {
+            content: '"';
+            position: absolute;
+            font-size: 4rem;
+            color: var(--elegant-burgundy);
+            opacity: 0.3;
+        }
+
+        .love-philosophy blockquote::before {
+            left: -1rem;
+            top: -1rem;
+        }
+
+        .love-philosophy blockquote::after {
+            right: -1rem;
+            bottom: -2rem;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item.large {
+                grid-column: span 1;
+            }
+
+            .lovers-name {
+                font-size: 3rem;
+            }
+
+            .love-quote {
+                font-size: 1.3rem;
+            }
+
+            .love-philosophy blockquote {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</Layout>
