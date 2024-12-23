@@ -303,33 +303,100 @@ import Layout from '../layouts/Layout.astro';
     }
 
     @media (max-width: 768px) {
+        .time-together-container {
+            padding: 1rem;
+        }
+
+        .hero-section {
+            height: 50vh;
+            margin-bottom: 2rem;
+        }
+
         .hero-content h1 {
             font-size: 2rem;
+            margin-bottom: 0.5rem;
         }
 
         .hero-content h2 {
-            font-size: 3rem;
+            font-size: 1.5rem;
         }
 
         .hero-subtitle {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
+        }
+
+        .days-loving-container {
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .days-loving-container h3 {
+            font-size: 1.3rem;
+        }
+
+        .counter {
+            font-size: 1.8rem;
+            margin: 1rem 0;
+        }
+
+        .next-milestone {
+            padding: 1.5rem;
+        }
+
+        .next-milestone h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
         }
 
         .countdown-container {
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 1rem;
         }
 
         .countdown-item {
-            min-width: 100px;
-            padding: 1.5rem;
+            min-width: 80px;
+            padding: 0.8rem;
         }
 
         .countdown-item span {
-            font-size: 2.5rem;
+            font-size: 1.5rem;
         }
 
         .countdown-item label {
+            font-size: 0.8rem;
+        }
+
+        .milestone-text {
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .hero-content h1 {
+            font-size: 1.8rem;
+        }
+
+        .hero-content h2 {
+            font-size: 1.3rem;
+        }
+
+        .hero-subtitle {
             font-size: 1rem;
+        }
+
+        .countdown-item {
+            min-width: 70px;
+            padding: 0.6rem;
+        }
+
+        .countdown-item span {
+            font-size: 1.3rem;
+        }
+
+        .countdown-item label {
+            font-size: 0.7rem;
         }
     }
 </style>
