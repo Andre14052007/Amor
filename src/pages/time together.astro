@@ -36,6 +36,10 @@ import Layout from '../layouts/Layout.astro';
                     <span id="minutes">0</span>
                     <label>Minutos</label>
                 </div>
+                <div class="countdown-item">
+                    <span id="seconds">0</span>
+                    <label>Segundos</label>
+                </div>
             </div>
             <p class="milestone-text">2 anos juntinhos!</p>
         </section>
@@ -90,16 +94,18 @@ import Layout from '../layouts/Layout.astro';
             const remainingDays = days % 30;
             const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
             
             document.getElementById('months').innerText = months.toString().padStart(2, '0');
             document.getElementById('days').innerText = remainingDays.toString().padStart(2, '0');
             document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
             document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
         }
     }
 
     updateCountdown();
-    setInterval(updateCountdown, 1000 * 60); // Update every minute
+    setInterval(updateCountdown, 1000); // Update every second
 </script>
 
 <style>
@@ -205,6 +211,7 @@ import Layout from '../layouts/Layout.astro';
         justify-content: center;
         gap: 2rem;
         margin: 2rem 0;
+        flex-wrap: wrap;
     }
 
     .countdown-item {
@@ -233,6 +240,7 @@ import Layout from '../layouts/Layout.astro';
         font-size: 1rem;
         color: var(--elegant-burgundy);
         margin-top: 0.5rem;
+        display: block;
     }
 
     .milestone-text {
