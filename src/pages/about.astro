@@ -36,7 +36,6 @@ import Layout from '../layouts/Layout.astro';
                         <div class="timeline-content">
                             <h3>Primeiro Encontro</h3>
                             <p>Um momento mágico que mudou nossas vidas para sempre. Combinámos ir a um café e falámos durante horas, sobre tudo e mais alguma coisa, acabando este lindo e maravilhoso dia beijando-nos, com a chuva a começar a cair.</p>
-                            
                         </div>
                     </div>
                     <div class="timeline-item">
@@ -83,23 +82,13 @@ import Layout from '../layouts/Layout.astro';
             </div>
         </section>
 
-        <section class="about-container">
-            <h1>A Nossa História</h1>
-            <p>Bem-vindos ao nosso espaço especial! Somos o Andre e a Barbara, e esta é a nossa história de amor.</p>
-            <p>.</p>
-            <h2>A Nossa Jornada</h2>
-            <p>.</p>
-            <h2>O que Valorizamos</h2>
-            <p>Acreditamos no amor, nas risadas e nas pequenas coisas que tornam a vida linda.</p>
-            
-        </section>
-
         <section class="love-philosophy">
-            <blockquote>
-                "O nosso amor é uma ponte entre dois mundos. 
-                Não somos apenas dois indivíduos, mas uma história de conexão, 
-                respeito e amor que transcende qualquer barreira."
-            </blockquote>
+            <div class="philosophy-content">
+                <blockquote>
+                    O nosso amor transcende línguas, culturas e fronteiras. 
+                    Somos a prova de que o amor verdadeiro não conhece limites.
+                </blockquote>
+            </div>
         </section>
     </main>
 </Layout>
@@ -109,10 +98,8 @@ import Layout from '../layouts/Layout.astro';
         --deep-red: #8B0000;
         --rich-crimson: #DC143C;
         --elegant-burgundy: #800020;
-        --soft-rose: #FFB6C1;
-        --romantic-cream: #FFF5EE;
-        --text-color: #2C0E0E;
-        --accent-gold: #DAA520;
+        --love-pink: #FFB6C1;
+        --romantic-pink: #FFC0CB;
     }
 
     .love-story-container {
@@ -123,15 +110,17 @@ import Layout from '../layouts/Layout.astro';
 
     .hero-section {
         position: relative;
-        height: 40vh;
+        height: 80vh;
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
         color: var(--elegant-burgundy);
         margin-bottom: 4rem;
-        border-radius: 15px;
+        border-radius: 20px;
         overflow: hidden;
+        background: linear-gradient(135deg, var(--love-pink), var(--romantic-pink));
+        box-shadow: 0 10px 30px rgba(255, 182, 193, 0.4);
     }
 
     .hero-overlay {
@@ -140,147 +129,140 @@ import Layout from '../layouts/Layout.astro';
         left: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(
-            135deg, 
-            rgba(220, 20, 60, 0.1), 
-            rgba(255, 182, 193, 0.05)
-        );
-        z-index: 1;
+        background: rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(3px);
     }
 
     .hero-content {
         position: relative;
-        z-index: 2;
+        z-index: 1;
+        animation: floatIn 1.5s ease-out;
     }
 
     .lovers-name {
-        font-family: 'Bodoni Moda', serif;
         font-size: 4rem;
+        color: white;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         margin-bottom: 1rem;
-        letter-spacing: 2px;
-        font-weight: 700;
+        opacity: 0;
+        animation: fadeIn 0.8s ease-out forwards;
     }
 
     .love-subtitle {
-        font-family: 'Libre Baskerville', serif;
-        font-size: 1.7rem;
-        color: var(--elegant-burgundy);
-        font-style: italic;
-    }
-
-    .our-journey {
-        margin-bottom: 4rem;
+        font-size: 1.8rem;
+        color: white;
+        opacity: 0;
+        animation: fadeIn 0.8s ease-out forwards 0.3s;
     }
 
     .journey-content {
-        display: flex;
-        flex-direction: column;
-        gap: 4rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 4rem 2rem;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
 
     .journey-chapter {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
+        margin-bottom: 4rem;
+        opacity: 0;
+        animation: slideUp 1s ease-out forwards;
     }
 
     .journey-chapter h2 {
-        font-family: 'Bodoni Moda', serif;
         font-size: 3rem;
-        color: var(--deep-red);
+        color: var(--elegant-burgundy);
         text-align: center;
-        letter-spacing: 1px;
+        margin-bottom: 2rem;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
     }
 
     .chapter-details {
         display: flex;
+        gap: 2rem;
         align-items: center;
-        gap: 3rem;
-        background: linear-gradient(
-            135deg, 
-            rgba(220, 20, 60, 0.03), 
-            rgba(255, 182, 193, 0.02)
-        );
         padding: 2rem;
+        background: rgba(255, 255, 255, 0.8);
         border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     }
 
     .chapter-images {
         display: flex;
-        gap: 2rem;
+        gap: 1.5rem;
+        flex: 1;
     }
 
     .chapter-image {
         width: 250px;
         height: 250px;
         object-fit: cover;
-        border-radius: 50%;
-        border: 4px solid var(--soft-rose);
-        box-shadow: 0 10px 25px rgba(128, 0, 32, 0.1);
-        transition: transform 0.4s ease;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .chapter-image:hover {
-        transform: scale(1.05);
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     }
 
     .chapter-details p {
         flex: 1;
         font-size: 1.2rem;
         line-height: 1.8;
-        color: var(--text-color);
-        font-family: 'Libre Baskerville', serif;
+        color: var(--elegant-burgundy);
     }
 
     .journey-timeline {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
+        margin: 4rem 0;
         position: relative;
-        padding: 2rem 0;
+        padding: 2rem;
     }
 
     .timeline-item {
-        display: flex;
-        align-items: center;
-        gap: 2rem;
+        position: relative;
+        padding: 2rem;
+        margin-left: 3rem;
+        margin-bottom: 2rem;
+        opacity: 0;
+        animation: slideIn 0.8s ease-out forwards;
     }
 
     .timeline-marker {
-        width: 20px;
-        height: 20px;
-        background-color: var(--deep-red);
-        border-radius: 50%;
-        position: relative;
-    }
-
-    .timeline-marker::before {
-        content: '';
         position: absolute;
-        width: 2px;
-        height: 100%;
-        background-color: var(--soft-rose);
-        left: 50%;
-        top: 100%;
+        left: -20px;
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, var(--love-pink), var(--romantic-pink));
+        border-radius: 50%;
+        box-shadow: 0 0 0 5px rgba(220, 20, 60, 0.2);
+        animation: pulse 2s infinite;
     }
 
     .timeline-content {
-        flex: 1;
-        background: linear-gradient(
-            135deg, 
-            rgba(220, 20, 60, 0.03), 
-            rgba(255, 182, 193, 0.02)
-        );
-        padding: 1.5rem;
-        border-radius: 10px;
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .timeline-content:hover {
+        transform: translateY(-5px);
     }
 
     .timeline-content h3 {
-        font-family: 'Bodoni Moda', serif;
-        color: var(--deep-red);
         font-size: 2rem;
-        margin-bottom: 0.5rem;
-        letter-spacing: 1px;
+        color: var(--rich-crimson);
+        margin-bottom: 1rem;
+    }
+
+    .timeline-content p {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: var(--elegant-burgundy);
     }
 
     .love-moments {
@@ -289,28 +271,29 @@ import Layout from '../layouts/Layout.astro';
 
     .moments-grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 2rem;
+        padding: 2rem;
     }
 
     .moment-card {
         position: relative;
         overflow: hidden;
         border-radius: 15px;
-        box-shadow: 0 6px 12px rgba(128, 0, 32, 0.1);
-        transition: transform 0.4s ease, box-shadow 0.4s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .moment-card:hover {
-        transform: scale(1.03);
-        box-shadow: 0 10px 20px rgba(128, 0, 32, 0.2);
+        transform: translateY(-10px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
     }
 
     .moment-card img {
         width: 100%;
-        height: 350px;
+        height: 300px;
         object-fit: cover;
-        transition: transform 0.4s ease;
+        transition: transform 0.5s ease;
     }
 
     .moment-card:hover img {
@@ -321,83 +304,107 @@ import Layout from '../layouts/Layout.astro';
         position: absolute;
         bottom: 0;
         left: 0;
-        width: 100%;
-        background: linear-gradient(to top, rgba(128, 0, 32, 0.8), transparent);
+        right: 0;
+        padding: 2rem;
+        background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
         color: white;
-        padding: 1.5rem;
-        opacity: 0;
-        transition: opacity 0.4s ease;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
     }
 
     .moment-card:hover .moment-overlay {
-        opacity: 1;
-    }
-
-    .about-container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 2rem;
-        text-align: center;
-    }
-
-    .about-image {
-        width: 100%;
-        height: auto;
-        border-radius: 10px;
-        margin-top: 1rem;
+        transform: translateY(0);
     }
 
     .love-philosophy {
         text-align: center;
         padding: 4rem 2rem;
-        background: linear-gradient(
-            135deg, 
-            rgba(220, 20, 60, 0.05), 
-            rgba(255, 182, 193, 0.03)
-        );
+        background: linear-gradient(135deg, var(--love-pink), var(--romantic-pink));
         border-radius: 15px;
+        margin: 4rem 0;
+        position: relative;
+        overflow: hidden;
     }
 
-    .love-philosophy blockquote {
-        font-family: 'Bodoni Moda', serif;
-        font-size: 2.5rem;
-        color: var(--deep-red);
+    .philosophy-content {
+        position: relative;
+        z-index: 1;
         max-width: 900px;
         margin: 0 auto;
+    }
+
+    .philosophy-content blockquote {
+        font-size: 2.5rem;
+        color: white;
         line-height: 1.4;
-        font-style: italic;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         position: relative;
-        padding: 0 2rem;
-        letter-spacing: 0.5px;
+        padding: 2rem;
+        opacity: 0;
+        animation: fadeIn 1s ease-out forwards;
     }
 
-    .love-philosophy blockquote::before,
-    .love-philosophy blockquote::after {
-        content: '"';
-        position: absolute;
-        font-size: 4rem;
-        color: var(--elegant-burgundy);
-        opacity: 0.3;
+    @keyframes floatIn {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
-    .love-philosophy blockquote::before {
-        left: -1rem;
-        top: -1rem;
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
     }
 
-    .love-philosophy blockquote::after {
-        right: -1rem;
-        bottom: -2rem;
+    @keyframes slideIn {
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes slideUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes pulse {
+        0% { box-shadow: 0 0 0 0 rgba(220, 20, 60, 0.4); }
+        70% { box-shadow: 0 0 0 10px rgba(220, 20, 60, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(220, 20, 60, 0); }
     }
 
     @media (max-width: 768px) {
+        .lovers-name {
+            font-size: 3rem;
+        }
+
+        .love-subtitle {
+            font-size: 1.4rem;
+        }
+
+        .journey-chapter h2 {
+            font-size: 2.5rem;
+        }
+
         .chapter-details {
             flex-direction: column;
             text-align: center;
         }
 
         .chapter-images {
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
         }
 
         .chapter-image {
@@ -405,20 +412,13 @@ import Layout from '../layouts/Layout.astro';
             height: 200px;
         }
 
-        .moments-grid {
-            grid-template-columns: 1fr;
+        .timeline-item {
+            margin-left: 2rem;
         }
 
-        .lovers-name {
-            font-size: 2.5rem;
-        }
-
-        .love-subtitle {
-            font-size: 1.2rem;
-        }
-
-        .love-philosophy blockquote {
+        .philosophy-content blockquote {
             font-size: 2rem;
+            padding: 1rem;
         }
     }
 </style>
