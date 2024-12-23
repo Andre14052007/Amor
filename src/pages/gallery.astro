@@ -24,22 +24,62 @@ const images = [
     </div>
     <div id="lightbox" class="lightbox" onclick="closeLightbox()">
         <span class="close">&times;</span>
+        <button class="nav-btn prev" onclick="event.stopPropagation(); navigateImage(-1)">&lt;</button>
+        <button class="nav-btn next" onclick="event.stopPropagation(); navigateImage(1)">&gt;</button>
         <div class="lightbox-content">
-            <img class="lightbox-image" id="lightbox-img" />
+            <img class="lightbox-image" id="lightbox-img" onload="this.style.opacity='1'" />
+            <div class="image-counter" id="image-counter"></div>
+            <div class="loading-spinner" id="loading-spinner"></div>
         </div>
     </div>
 </Layout>
 
 <script>
+let currentImageIndex = 0;
+const images = [
+    { src: '/Andre1.0.jpg', alt: 'Andre', caption: 'Meu Amor' },
+    { src: '/barbara1.0.jpeg', alt: 'Barbara', caption: 'Meu Tudo' },
+    { src: '/couple1.jpg', alt: 'Us Together', caption: 'Nós Juntos' },
+    { src: '/couple2.jpg', alt: 'Romantic Moment', caption: 'Memórias do Pôr do Sol' },
+    { src: '/couple3.jpg', alt: 'Adventure', caption: 'Explorando Juntos' }
+];
+
 function openLightbox(index) {
+    currentImageIndex = index;
     document.getElementById('lightbox').style.display = 'block';
-    const img = document.getElementsByClassName('gallery-image')[index];
+    updateLightboxImage();
+}
+
+function updateLightboxImage() {
+    const lightboxImg = document.getElementById('lightbox-img');
+    const spinner = document.getElementById('loading-spinner');
+    const counter = document.getElementById('image-counter');
     
+    lightboxImg.style.opacity = '0';
+    spinner.style.display = 'block';
+    
+    lightboxImg.src = images[currentImageIndex].src;
+    lightboxImg.alt = images[currentImageIndex].alt;
+    counter.textContent = `${currentImageIndex + 1} / ${images.length}`;
+}
+
+function navigateImage(direction) {
+    currentImageIndex = (currentImageIndex + direction + images.length) % images.length;
+    updateLightboxImage();
 }
 
 function closeLightbox() {
     document.getElementById('lightbox').style.display = 'none';
 }
+
+// Add keyboard navigation
+document.addEventListener('keydown', (e) => {
+    if (document.getElementById('lightbox').style.display === 'block') {
+        if (e.key === 'ArrowLeft') navigateImage(-1);
+        if (e.key === 'ArrowRight') navigateImage(1);
+        if (e.key === 'Escape') closeLightbox();
+    }
+});
 </script>
 
 <style>
@@ -90,24 +130,100 @@ h1 {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.8);
+    background-color: rgba(0,0,0,0.9);
 }
+
 .lightbox-content {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
 }
+
 .lightbox-image {
-    max-width: 90%;
-    max-height: 80%;
+    max-height: 90vh;
+    max-width: 90vw;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
+
 .close {
     position: absolute;
+    right: 20px;
     top: 20px;
-    right: 30px;
     color: white;
-    font-size: 40px;
+    font-size: 35px;
     cursor: pointer;
+    z-index: 1001;
+}
+
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,0.1);
+    border: none;
+    color: white;
+    padding: 15px 20px;
+    cursor: pointer;
+    font-size: 24px;
+    transition: background-color 0.3s ease;
+    z-index: 1001;
+}
+
+.nav-btn:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.prev {
+    left: 20px;
+}
+
+.next {
+    right: 20px;
+}
+
+.image-counter {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    background: rgba(0,0,0,0.5);
+    padding: 5px 10px;
+    border-radius: 15px;
+}
+
+.loading-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s linear infinite;
+    display: none;
+}
+
+@keyframes spin {
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-btn {
+        padding: 10px 15px;
+        font-size: 20px;
+    }
+    
+    .close {
+        font-size: 30px;
+    }
 }
 </style>

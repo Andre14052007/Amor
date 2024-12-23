@@ -16,12 +16,21 @@ import Layout from '../layouts/Layout.astro';
             <div class="gallery-grid">
                 <div class="gallery-item large">
                     <div class="slideshow-container">
-                        <img class="mySlides" src="/couple1.jpg" alt="Foto" />
-                        <img class="mySlides" src="/couple2.jpg" alt="Momentos Especiais" />
-                        <img class="mySlides" src="/couple3.jpg" alt="Outro Momento" />
-                        <div class="overlay">
-                            <h3>Memórias</h3>
-                            <p>Cada instante, uma memória</p>
+                        <div class="slide fade">
+                            <img class="mySlides" src="/couple1.jpg" alt="Foto" loading="lazy" />
+                        </div>
+                        <div class="slide fade">
+                            <img class="mySlides" src="/couple2.jpg" alt="Momentos Especiais" loading="lazy" />
+                        </div>
+                        <div class="slide fade">
+                            <img class="mySlides" src="/couple3.jpg" alt="Outro Momento" loading="lazy" />
+                        </div>
+                        <button class="slide-nav prev" onclick="changeSlide(-1)">❮</button>
+                        <button class="slide-nav next" onclick="changeSlide(1)">❯</button>
+                        <div class="dots-container">
+                            <span class="dot" onclick="currentSlide(1)"></span>
+                            <span class="dot" onclick="currentSlide(2)"></span>
+                            <span class="dot" onclick="currentSlide(3)"></span>
                         </div>
                     </div>
                 </div>
@@ -60,20 +69,37 @@ import Layout from '../layouts/Layout.astro';
     </main>
 
     <script>
-        let slideIndex = 0;
-        showSlides();
+        let slideIndex = 1;
+        showSlides(slideIndex);
 
-        function showSlides() {
-            let i;
-            const slides = document.getElementsByClassName("mySlides");
-            for (i = 0; i < slides.length; i++) {
-                (slides[i] as HTMLElement).style.display = "none";  
-            }
-            slideIndex++;
-            if (slideIndex > slides.length) {slideIndex = 1}    
-            (slides[slideIndex-1] as HTMLElement).style.display = "block";  
-            setTimeout(showSlides, 4000); // Change image every 4 seconds
+        function changeSlide(n) {
+            showSlides(slideIndex += n);
         }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            const slides = document.getElementsByClassName("slide");
+            const dots = document.getElementsByClassName("dot");
+            
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            
+            slides[slideIndex-1].style.display = "block";
+            dots[slideIndex-1].className += " active";
+        }
+
+        // Auto advance slides
+        setInterval(() => {
+            changeSlide(1);
+        }, 4000);
     </script>
 
     <style>
@@ -194,24 +220,81 @@ import Layout from '../layouts/Layout.astro';
 
         .slideshow-container {
             position: relative;
-            max-width: 100%;
-            margin: auto;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
         }
 
         .mySlides {
-            display: none;
             width: 100%;
-            border-radius: 10px;
+            height: 100%;
+            object-fit: cover;
         }
 
-        .overlay {
+        .fade {
+            animation: fade 1.5s ease;
+        }
+
+        @keyframes fade {
+            from {opacity: 0.4}
+            to {opacity: 1}
+        }
+
+        .slide-nav {
             position: absolute;
-            bottom: 10px;
-            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.3);
             color: white;
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 10px;
-            border-radius: 5px;
+            padding: 16px;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+            z-index: 2;
+        }
+
+        .slide-nav:hover {
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .prev {
+            left: 0;
+            border-radius: 0 3px 3px 0;
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .dots-container {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+
+        .dot {
+            height: 12px;
+            width: 12px;
+            margin: 0 4px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .dot:hover, .dot.active {
+            background-color: white;
         }
 
         .love-philosophy {
@@ -275,6 +358,17 @@ import Layout from '../layouts/Layout.astro';
 
             .love-philosophy blockquote {
                 font-size: 2rem;
+            }
+
+            .slide-nav {
+                padding: 12px;
+                font-size: 16px;
+            }
+            
+            .dot {
+                height: 10px;
+                width: 10px;
+                margin: 0 3px;
             }
         }
     </style>

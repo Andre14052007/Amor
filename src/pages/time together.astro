@@ -14,7 +14,30 @@ import Layout from '../layouts/Layout.astro';
 
         <section class="days-loving-container">
             <h3>Cada dia que passa amamo-nos mais.</h3>
-            <p id="days-loving"><span id="days-count"></span> dias de amor e carinho</p>
+            <p id="days-loving" class="counter"><span id="days-count">0</span> dias de amor e carinho</p>
+        </section>
+
+        <section class="next-milestone">
+            <h3>Próximo Marco Importante</h3>
+            <div class="countdown-container">
+                <div class="countdown-item">
+                    <span id="months">0</span>
+                    <label>Meses</label>
+                </div>
+                <div class="countdown-item">
+                    <span id="days">0</span>
+                    <label>Dias</label>
+                </div>
+                <div class="countdown-item">
+                    <span id="hours">0</span>
+                    <label>Horas</label>
+                </div>
+                <div class="countdown-item">
+                    <span id="minutes">0</span>
+                    <label>Minutos</label>
+                </div>
+            </div>
+            <p class="milestone-text">Até completarmos 6 meses juntos!</p>
         </section>
     </div>
 </Layout>
@@ -24,10 +47,58 @@ import Layout from '../layouts/Layout.astro';
     const today = new Date();
     const timeDifference = today.getTime() - startDate.getTime();
     const daysLoving = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    
+    // Animate days count
     const daysCountElement = document.getElementById('days-count');
     if (daysCountElement) {
-        daysCountElement.innerText = daysLoving.toString();
+        let currentCount = 0;
+        const duration = 2000; // 2 seconds
+        const increment = daysLoving / (duration / 16); // 60fps
+        
+        const animate = () => {
+            currentCount = Math.min(currentCount + increment, daysLoving);
+            daysCountElement.innerText = Math.floor(currentCount).toString();
+            
+            if (currentCount < daysLoving) {
+                requestAnimationFrame(animate);
+            }
+        };
+        
+        // Start animation when element is in view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animate();
+                    observer.disconnect();
+                }
+            });
+        });
+        
+        observer.observe(daysCountElement);
     }
+
+    // Countdown to 6 months
+    const sixMonthsDate = new Date(2024, 4, 3); // May 3rd, 2024
+    
+    function updateCountdown() {
+        const now = new Date();
+        const difference = sixMonthsDate - now;
+        
+        if (difference > 0) {
+            const months = Math.floor(difference / (1000 * 60 * 60 * 24 * 30));
+            const days = Math.floor((difference % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            
+            document.getElementById('months').innerText = months.toString().padStart(2, '0');
+            document.getElementById('days').innerText = days.toString().padStart(2, '0');
+            document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+        }
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000 * 60); // Update every minute
 </script>
 
 <style>
@@ -110,6 +181,66 @@ import Layout from '../layouts/Layout.astro';
         color: var(--rich-crimson);
     }
 
+    .counter {
+        font-size: 2.4rem;
+        color: var(--rich-crimson);
+        margin: 2rem 0;
+        font-family: 'Bodoni Moda', serif;
+        font-weight: 600;
+    }
+
+    .next-milestone {
+        background: linear-gradient(135deg, rgba(139, 0, 0, 0.05), rgba(255, 182, 193, 0.1));
+        padding: 3rem;
+        border-radius: 15px;
+        text-align: center;
+        margin-top: 3rem;
+        box-shadow: 0 4px 20px rgba(139, 0, 0, 0.1);
+        border: 1px solid rgba(139, 0, 0, 0.1);
+    }
+
+    .countdown-container {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin: 2rem 0;
+    }
+
+    .countdown-item {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 10px;
+        min-width: 100px;
+        box-shadow: 0 4px 15px rgba(139, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .countdown-item:hover {
+        transform: translateY(-5px);
+    }
+
+    .countdown-item span {
+        display: block;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--deep-red);
+        font-family: 'Bodoni Moda', serif;
+    }
+
+    .countdown-item label {
+        display: block;
+        font-size: 1rem;
+        color: var(--elegant-burgundy);
+        margin-top: 0.5rem;
+    }
+
+    .milestone-text {
+        font-size: 1.4rem;
+        color: var(--elegant-burgundy);
+        margin-top: 2rem;
+        font-style: italic;
+    }
+
     @media (max-width: 768px) {
         .time-together-container {
             padding: 1rem;
@@ -149,6 +280,28 @@ import Layout from '../layouts/Layout.astro';
 
         #days-count {
             font-size: 2rem;
+        }
+
+        .countdown-container {
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .countdown-item {
+            min-width: 80px;
+            padding: 1rem;
+        }
+
+        .countdown-item span {
+            font-size: 2rem;
+        }
+
+        .countdown-item label {
+            font-size: 0.9rem;
+        }
+
+        .milestone-text {
+            font-size: 1.2rem;
         }
     }
 </style>
