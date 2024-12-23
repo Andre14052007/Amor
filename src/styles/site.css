@@ -1,8 +1,9 @@
 :root {
-    --primary-color: #D2203C;
-    --secondary-color: #FFB6C1;
-    --accent-color: #FFFFFF;
-    --font-heading: 'Bodoni Moda', serif;
+    --primary-color: #D2203C; /* Burgundy */
+    --secondary-color: #FFB6C1; /* Light Pink */
+    --accent-color: #FFFFFF; /* White */
+    --highlight-color: #FFD700; /* Gold */
+    --font-heading: 'Dancing Script', cursive;
     --font-body: 'Libre Baskerville', serif;
 }
 
@@ -12,23 +13,86 @@ body {
     margin: 0;
     padding: 0;
     background-color: var(--secondary-color);
+    line-height: 1.6;
 }
 
 h1, h2, h3 {
     font-family: var(--font-heading);
+    text-align: center;
+}
+
+h1 {
+    font-size: 3rem;
+    color: var(--highlight-color);
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 0.75rem;
+}
+
+h3 {
+    font-size: 2rem;
+    color: var(--highlight-color);
+    margin-bottom: 0.5rem;
 }
 
 button {
+    margin-top: 1rem;
+    padding: 10px 20px;
     background-color: var(--primary-color);
     color: var(--accent-color);
     border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
+    border-radius: 25px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
 button:hover {
-    background-color: var(--accent-color);
+    background-color: var(--highlight-color);
     color: var(--primary-color);
+    transform: scale(1.05);
+}
+
+.hero-section {
+    position: relative;
+    padding: 4rem 0;
+    color: var(--accent-color);
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    background-image: url('/path/to/romantic-background.jpg'); /* Replace with your image */
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 15px;
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.footer {
+    background-color: var(--primary-color);
+    color: var(--accent-color);
+    text-align: center;
+    padding: 1rem 0;
 }

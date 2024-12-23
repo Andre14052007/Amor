@@ -64,6 +64,22 @@ import Layout from '../layouts/Layout.astro';
             font-style: italic;
         }
 
+        button {
+            margin-top: 1rem;
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: var(--accent-color);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+        }
+
         h1 {
             font-size: 2.8rem;
             color: var(--rich-crimson);
