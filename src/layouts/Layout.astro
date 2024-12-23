@@ -25,12 +25,12 @@ const { title } = Astro.props;
 			<div class="logo">
 				<h1>Andre <span class="heart">❤</span> Barbara</h1>
 			</div>
-			<nav class="site-nav">
-				<ul>
-					<li><a href="/">Início</a></li>
-					<li><a href="/about">Sobre Nós</a></li>
-					<li><a href="/gallery">Galeria</a></li>
-					<li><a href="/time%20together">Tempo Juntos</a></li>
+			<nav class="site-nav" style="background-color: rgba(255, 182, 193, 0.8); padding: 10px; border-radius: 5px;">
+				<ul style="list-style: none; display: flex; justify-content: center; gap: 20px;">
+					<li><a href="/" style="padding: 10px 15px; background-color: var(--primary-color); color: var(--accent-color); border-radius: 25px; text-decoration: none; transition: background-color 0.3s;">Início</a></li>
+					<li><a href="/about" style="padding: 10px 15px; background-color: var(--primary-color); color: var(--accent-color); border-radius: 25px; text-decoration: none; transition: background-color 0.3s;">Sobre Nós</a></li>
+					<li><a href="/gallery" style="padding: 10px 15px; background-color: var(--primary-color); color: var(--accent-color); border-radius: 25px; text-decoration: none; transition: background-color 0.3s;">Galeria</a></li>
+					<li><a href="/time%20together" style="padding: 10px 15px; background-color: var(--primary-color); color: var(--accent-color); border-radius: 25px; text-decoration: none; transition: background-color 0.3s;">Tempo Juntos</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -57,6 +57,8 @@ const { title } = Astro.props;
 		--romantic-cream: #FFF5EE;
 		--text-color: #2C0E0E;
 		--accent-gold: #DAA520;
+		--primary-color: #8B0A1A;
+		--accent-color: #FFF5EE;
 	}
 
 	* {
