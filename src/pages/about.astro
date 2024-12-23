@@ -110,27 +110,19 @@ import Layout from '../layouts/Layout.astro';
 
     .hero-section {
         position: relative;
-        height: 80vh;
+        height: 60vh;
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
-        color: var(--elegant-burgundy);
-        margin-bottom: 4rem;
-        border-radius: 20px;
-        overflow: hidden;
         background: linear-gradient(135deg, var(--love-pink), var(--romantic-pink));
-        box-shadow: 0 10px 30px rgba(255, 182, 193, 0.4);
+        margin-bottom: 4rem;
+        border-radius: 15px;
+        overflow: hidden;
     }
 
     .hero-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.2);
-        backdrop-filter: blur(3px);
+        display: none;
     }
 
     .hero-content {

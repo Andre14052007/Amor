@@ -11,7 +11,7 @@ const images = [
 ---
 
 <Layout title="Andre & Barbara: Nossa Galeria">
-    <main class="gallery-page">
+    <div class="gallery-container">
         <section class="hero-section">
             <div class="hero-overlay"></div>
             <div class="hero-content">
@@ -20,7 +20,7 @@ const images = [
             </div>
         </section>
 
-        <section class="gallery-container">
+        <section class="gallery-content">
             <div class="gallery-grid">
                 {images.map((image, index) => (
                     <div class="gallery-item">
@@ -35,7 +35,7 @@ const images = [
                 ))}
             </div>
         </section>
-    </main>
+    </div>
 
     <div id="lightbox" class="lightbox" onclick="closeLightbox()">
         <span class="close">&times;</span>
@@ -48,7 +48,6 @@ const images = [
             <p class="lightbox-caption" id="lightbox-caption"></p>
         </div>
     </div>
-</Layout>
 
 <script>
     const galleryImages = Array.from(document.querySelectorAll('.gallery-image')).map(img => ({
@@ -118,34 +117,27 @@ const images = [
         --romantic-pink: #FFC0CB;
     }
 
-    .gallery-page {
+    .gallery-container {
         max-width: 1200px;
         margin: 0 auto;
+        padding: 2rem;
     }
 
     .hero-section {
         position: relative;
-        height: 80vh;
+        height: 60vh;
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
-        color: var(--elegant-burgundy);
-        margin-bottom: 4rem;
-        border-radius: 20px;
-        overflow: hidden;
         background: linear-gradient(135deg, var(--love-pink), var(--romantic-pink));
-        box-shadow: 0 10px 30px rgba(255, 182, 193, 0.4);
+        margin-bottom: 4rem;
+        border-radius: 15px;
+        overflow: hidden;
     }
 
     .hero-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.2);
-        backdrop-filter: blur(3px);
+        display: none;
     }
 
     .hero-content {
@@ -170,7 +162,7 @@ const images = [
         animation: fadeIn 0.8s ease-out forwards 0.3s;
     }
 
-    .gallery-container {
+    .gallery-content {
         padding: 2rem;
         margin-bottom: 4rem;
     }
