@@ -7,8 +7,12 @@ import Layout from '../layouts/Layout.astro';
         <section class="hero-section">
             <div class="hero-overlay"></div>
             <div class="hero-content">
-                <h1 class="lovers-name">Andre <span class="heart animated">❤</span> Barbara</h1>
-                <p class="love-quote">Uma história de amor e paixão </p>
+                <h1 class="lovers-name">
+                    <span class="name">Andre</span>
+                    <span class="heart">❤</span>
+                    <span class="name">Barbara</span>
+                </h1>
+                <p class="love-quote">Uma história de amor e paixão</p>
             </div>
         </section>
 
@@ -69,33 +73,11 @@ import Layout from '../layouts/Layout.astro';
     </main>
 
     <script>
-        // Wrap each letter in a span for animation
-        function wrapLetters() {
-            const names = document.querySelector('.lovers-name');
-            if (!names) return;
-            
-            const text = names.innerHTML;
-            const wrappedText = text.replace(/([A-Za-z])/g, "<span class='letter'>$1</span>");
-            names.innerHTML = wrappedText;
-            
-            // Reapply heart class
-            const heart = names.querySelector('span:contains("❤")');
-            if (heart) {
-                heart.className = 'heart animated';
-            }
-        }
-
-        // Initialize animations
-        document.addEventListener('DOMContentLoaded', () => {
-            wrapLetters();
-        });
-
         let slideIndex = 1;
         showSlides(slideIndex);
 
         function changeSlide(n) {
-            slideIndex += n;
-            showSlides(slideIndex);
+            showSlides(slideIndex += n);
         }
 
         function currentSlide(n) {
@@ -198,16 +180,33 @@ import Layout from '../layouts/Layout.astro';
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
+            gap: 1rem;
         }
 
-        .heart.animated {
+        .lovers-name .name {
+            display: inline-block;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .lovers-name .heart {
             color: var(--rich-crimson);
             display: inline-block;
-            animation: heartbeat 1.5s ease-in-out infinite;
-            transform-origin: center;
             font-size: 3rem;
-            transition: transform 0.3s ease;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        .lovers-name:hover .heart {
+            animation: heartJump 0.6s ease-in-out infinite;
+        }
+
+        @keyframes heartJump {
+            0%, 100% { transform: scale(1) translateY(0); }
+            50% { transform: scale(1.2) translateY(-10px); }
+        }
+
+        .lovers-name:hover .name {
+            color: var(--rich-crimson);
+            transform: translateY(-2px);
         }
 
         @keyframes heartbeat {
@@ -216,25 +215,6 @@ import Layout from '../layouts/Layout.astro';
             40% { transform: scale(1); }
             60% { transform: scale(1.1); }
             100% { transform: scale(1); }
-        }
-
-        .lovers-name span:not(.heart) {
-            display: inline-block;
-            transition: transform 0.3s ease, color 0.3s ease;
-        }
-
-        .lovers-name:hover span:not(.heart) {
-            transform: translateY(-2px);
-            color: var(--rich-crimson);
-        }
-
-        .lovers-name:hover .heart.animated {
-            animation: heartJump 0.6s ease-in-out infinite;
-        }
-
-        @keyframes heartJump {
-            0%, 100% { transform: scale(1) translateY(0); }
-            50% { transform: scale(1.2) translateY(-10px); }
         }
 
         .love-quote {
