@@ -82,16 +82,17 @@ import Layout from '../layouts/Layout.astro';
     
     function updateCountdown() {
         const now = new Date();
-        const difference = twoYearsDate - now;
+        const difference = Math.max(0, twoYearsDate.getTime() - now.getTime());
         
         if (difference > 0) {
-            const months = Math.floor(difference / (1000 * 60 * 60 * 24 * 30));
-            const days = Math.floor((difference % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const months = Math.floor(days / 30);
+            const remainingDays = days % 30;
             const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
             
             document.getElementById('months').innerText = months.toString().padStart(2, '0');
-            document.getElementById('days').innerText = days.toString().padStart(2, '0');
+            document.getElementById('days').innerText = remainingDays.toString().padStart(2, '0');
             document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
             document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
         }

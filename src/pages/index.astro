@@ -73,7 +73,8 @@ import Layout from '../layouts/Layout.astro';
         showSlides(slideIndex);
 
         function changeSlide(n) {
-            showSlides(slideIndex += n);
+            slideIndex += n;
+            showSlides(slideIndex);
         }
 
         function currentSlide(n) {
@@ -84,22 +85,38 @@ import Layout from '../layouts/Layout.astro';
             const slides = document.getElementsByClassName("slide");
             const dots = document.getElementsByClassName("dot");
             
+            if (!slides.length || !dots.length) return;
+            
             if (n > slides.length) {slideIndex = 1}
             if (n < 1) {slideIndex = slides.length}
             
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-                dots[i].className = dots[i].className.replace(" active", "");
-            }
+            Array.from(slides).forEach((slide) => {
+                slide.classList.remove("active");
+            });
             
-            slides[slideIndex-1].style.display = "block";
-            dots[slideIndex-1].className += " active";
+            Array.from(dots).forEach((dot) => {
+                dot.className = dot.className.replace(" active", "");
+            });
+            
+            if (slides[slideIndex-1] && dots[slideIndex-1]) {
+                slides[slideIndex-1].classList.add("active");
+                dots[slideIndex-1].className += " active";
+            }
         }
 
         // Auto advance slides
-        setInterval(() => {
+        const slideInterval = setInterval(() => {
             changeSlide(1);
         }, 4000);
+
+        // Clean up interval when page is hidden
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                clearInterval(slideInterval);
+            } else {
+                showSlides(slideIndex);
+            }
+        });
     </script>
 
     <style>
@@ -221,7 +238,7 @@ import Layout from '../layouts/Layout.astro';
         .slideshow-container {
             position: relative;
             width: 100%;
-            height: 400px;
+            height: 100%;
             overflow: hidden;
         }
 
@@ -229,9 +246,14 @@ import Layout from '../layouts/Layout.astro';
             display: none;
             width: 100%;
             height: 100%;
+            position: relative;
         }
 
-        .mySlides {
+        .slide.active {
+            display: block;
+        }
+
+        .slide img {
             width: 100%;
             height: 100%;
             object-fit: cover;
