@@ -18,7 +18,7 @@ import Layout from '../layouts/Layout.astro';
         </section>
 
         <section class="next-milestone">
-            <h3>Próximo Marco Importante</h3>
+            <h3>Próximo Marco Importante:</h3>
             <div class="countdown-container">
                 <div class="countdown-item">
                     <span id="months">0</span>
@@ -37,7 +37,7 @@ import Layout from '../layouts/Layout.astro';
                     <label>Minutos</label>
                 </div>
             </div>
-            <p class="milestone-text">Até completarmos 6 meses juntos!</p>
+            <p class="milestone-text">2 anos juntinhos!</p>
         </section>
     </div>
 </Layout>
@@ -77,12 +77,12 @@ import Layout from '../layouts/Layout.astro';
         observer.observe(daysCountElement);
     }
 
-    // Countdown to 6 months
-    const sixMonthsDate = new Date(2024, 4, 3); // May 3rd, 2024
+    // Countdown to 2 years
+    const twoYearsDate = new Date(2025, 10, 3); // November 3rd, 2025
     
     function updateCountdown() {
         const now = new Date();
-        const difference = sixMonthsDate - now;
+        const difference = twoYearsDate - now;
         
         if (difference > 0) {
             const months = Math.floor(difference / (1000 * 60 * 60 * 24 * 30));
