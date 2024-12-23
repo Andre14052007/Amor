@@ -33,8 +33,8 @@ const images = [
 <script>
 function openLightbox(index) {
     document.getElementById('lightbox').style.display = 'block';
-    var img = document.getElementsByClassName('gallery-image')[index];
-    document.getElementById('lightbox-img').src = img.src;
+    const img = document.getElementsByClassName('gallery-image')[index];
+    
 }
 
 function closeLightbox() {
