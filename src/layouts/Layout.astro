@@ -23,17 +23,13 @@ const { title } = Astro.props;
 	</head>
 	<body>
 		<header class="site-header">
-			<div class="logo">
-				<h1>Andre <span class="heart">❤</span> Barbara</h1>
+					<a href="/" class="site-title">Andre <span class="heart">❤</span> Barbara</a>
+					<a href="/" class="nav-link">Início</a>
+					<a href="/about" class="nav-link">Sobre Nós</a>
+					<a href="/gallery" class="nav-link">Galeria</a>
+					<a href="/time&together" class="nav-link">Tempo Juntos</a>
+				</nav>
 			</div>
-			<nav class="site-nav" style="background-color: rgba(255, 182, 193, 0.8); padding: 10px; border-radius: 5px;">
-				<ul style="list-style: none; display: flex; justify-content: center; gap: 20px;">
-					<li><a href="/" style="padding: 10px 15px; background-color: var(--primary-color); color: var(--accent-color); border-radius: 25px; text-decoration: none; transition: background-color 0.3s;">Início</a></li>
-					<li><a href="/about" style="padding: 10px 15px; background-color: var(--primary-color); color: var(--accent-color); border-radius: 25px; text-decoration: none; transition: background-color 0.3s;">Sobre Nós</a></li>
-					<li><a href="/gallery" style="padding: 10px 15px; background-color: var(--primary-color); color: var(--accent-color); border-radius: 25px; text-decoration: none; transition: background-color 0.3s;">Galeria</a></li>
-					<li><a href="/time%20together" style="padding: 10px 15px; background-color: var(--primary-color); color: var(--accent-color); border-radius: 25px; text-decoration: none; transition: background-color 0.3s;">Tempo Juntos</a></li>
-				</ul>
-			</nav>
 		</header>
 
 		<main>
@@ -90,29 +86,40 @@ const { title } = Astro.props;
 		padding: 1rem 2rem;
 	}
 
-	.logo {
+	.site-title {
 		font-family: 'Bodoni Moda', serif;
 		font-size: 2rem;
 		font-weight: 700;
 		color: var(--deep-red);
 	}
 
-	.site-nav ul {
-		list-style: none;
-		margin: 0;
-		padding: 0;
+	.site-nav {
+		margin-left: 2rem;
 		display: flex;
-		gap: 2rem;
+		justify-content: space-between;
+		align-items: center;
 	}
 
 	.site-nav a {
 		color: var(--text-color);
 		text-decoration: none;
 		transition: color 0.3s ease;
+		margin-right: 2rem;
 	}
 
 	.site-nav a:hover {
 		color: var(--rich-crimson);
+	}
+
+	.logo {
+		margin: 0 2rem;
+	}
+
+	.logo h1 {
+		font-family: 'Bodoni Moda', serif;
+		font-size: 2rem;
+		font-weight: 700;
+		color: var(--deep-red);
 	}
 
 	main {
@@ -151,10 +158,17 @@ const { title } = Astro.props;
 			padding: 1rem;
 		}
 
-		.site-nav ul {
+		.site-nav {
 			flex-direction: column;
 			align-items: center;
-			gap: 1rem;
+		}
+
+		.site-nav a {
+			margin: 1rem 0;
+		}
+
+		.logo {
+			margin: 1rem 0;
 		}
 	}
 </style>
