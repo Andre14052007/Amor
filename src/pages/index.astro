@@ -16,28 +16,50 @@ import Layout from '../layouts/Layout.astro';
             </div>
         </section>
 
-        <section class="moments-gallery">
-            <div class="gallery-grid">
-                <div class="gallery-item large">
-                    <div class="slideshow-container">
-                        <div class="slide fade">
-                            <img class="mySlides" src="/e0d6c696-73d0-41d4-8f96-4a3b04242b67.jpg" alt="Foto" loading="lazy" />
-                        </div>
-                        <div class="slide fade">
-                            <img class="mySlides" src="/b9e5f696-a3f5-4f8b-88d0-94be713d6b48.JPG" alt="Momentos Especiais" loading="lazy" />
-                        </div>
-                        <div class="slide fade">
-                            <img class="mySlides" src="/cde01ef0-3c39-47cc-baa0-e8b0348c5816.JPG" alt="Outro Momento" loading="lazy" />
-                        </div>
-                        <button class="slide-nav prev" onclick="changeSlide(-1)">❮</button>
-                        <button class="slide-nav next" onclick="changeSlide(1)">❯</button>
-                        <div class="dots-container">
-                            <span class="dot" onclick="currentSlide(1)"></span>
-                            <span class="dot" onclick="currentSlide(2)"></span>
-                            <span class="dot" onclick="currentSlide(3)"></span>
-                        </div>
+        <section class="slideshows-section">
+            <div class="slideshow-wrapper">
+                <div class="slideshow-container">
+                    <div class="slide fade">
+                        <img class="mySlides" src="/e0d6c696-73d0-41d4-8f96-4a3b04242b67.jpg" alt="Foto" loading="lazy" />
+                    </div>
+                    <div class="slide fade">
+                        <img class="mySlides" src="/b9e5f696-a3f5-4f8b-88d0-94be713d6b48.JPG" alt="Momentos Especiais" loading="lazy" />
+                    </div>
+                    <div class="slide fade">
+                        <img class="mySlides" src="/cde01ef0-3c39-47cc-baa0-e8b0348c5816.JPG" alt="Outro Momento" loading="lazy" />
+                    </div>
+                    <button class="slide-nav prev" onclick="changeSlide(-1)">❮</button>
+                    <button class="slide-nav next" onclick="changeSlide(1)">❯</button>
+                    <div class="dots-container">
+                        <span class="dot" onclick="currentSlide(1)"></span>
+                        <span class="dot" onclick="currentSlide(2)"></span>
+                        <span class="dot" onclick="currentSlide(3)"></span>
                     </div>
                 </div>
+
+                <div class="slideshow-container">
+                    <div class="slide fade">
+                        <img class="mySlides2" src="/couple1.jpg" alt="Foto" loading="lazy" />
+                    </div>
+                    <div class="slide fade">
+                        <img class="mySlides2" src="/couple2.jpg" alt="Momentos Especiais" loading="lazy" />
+                    </div>
+                    <div class="slide fade">
+                        <img class="mySlides2" src="/couple3.jpg" alt="Outro Momento" loading="lazy" />
+                    </div>
+                    <button class="slide-nav prev" onclick="changeSlide2(-1)">❮</button>
+                    <button class="slide-nav next" onclick="changeSlide2(1)">❯</button>
+                    <div class="dots-container">
+                        <span class="dot2" onclick="currentSlide2(1)"></span>
+                        <span class="dot2" onclick="currentSlide2(2)"></span>
+                        <span class="dot2" onclick="currentSlide2(3)"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="moments-gallery">
+            <div class="gallery-grid">
                 <div class="gallery-item">
                     <img src="eu.jpg" alt="Andre" />
                     <div class="overlay">
@@ -74,18 +96,28 @@ import Layout from '../layouts/Layout.astro';
 
     <script>
         let slideIndex = 1;
+        let slideIndex2 = 1;
         showSlides(slideIndex);
+        showSlides2(slideIndex2);
 
         function changeSlide(n) {
             showSlides(slideIndex += n);
+        }
+
+        function changeSlide2(n) {
+            showSlides2(slideIndex2 += n);
         }
 
         function currentSlide(n) {
             showSlides(slideIndex = n);
         }
 
+        function currentSlide2(n) {
+            showSlides2(slideIndex2 = n);
+        }
+
         function showSlides(n) {
-            const slides = document.getElementsByClassName("slide");
+            const slides = document.getElementsByClassName("mySlides");
             const dots = document.getElementsByClassName("dot");
             
             if (!slides.length || !dots.length) return;
@@ -93,35 +125,59 @@ import Layout from '../layouts/Layout.astro';
             if (n > slides.length) {slideIndex = 1}
             if (n < 1) {slideIndex = slides.length}
             
-            // Hide all slides
             Array.from(slides).forEach((slide) => {
-                slide.style.display = "none";
-                slide.classList.remove("active");
+                slide.parentElement.style.display = "none";
             });
             
-            // Remove active class from all dots
             Array.from(dots).forEach((dot) => {
                 dot.classList.remove("active");
             });
             
-            // Show current slide and activate corresponding dot
-            slides[slideIndex - 1].style.display = "block";
-            slides[slideIndex - 1].classList.add("active");
+            slides[slideIndex - 1].parentElement.style.display = "block";
             dots[slideIndex - 1].classList.add("active");
         }
 
-        // Auto advance slides
+        function showSlides2(n) {
+            const slides = document.getElementsByClassName("mySlides2");
+            const dots = document.getElementsByClassName("dot2");
+            
+            if (!slides.length || !dots.length) return;
+            
+            if (n > slides.length) {slideIndex2 = 1}
+            if (n < 1) {slideIndex2 = slides.length}
+            
+            Array.from(slides).forEach((slide) => {
+                slide.parentElement.style.display = "none";
+            });
+            
+            Array.from(dots).forEach((dot) => {
+                dot.classList.remove("active");
+            });
+            
+            slides[slideIndex2 - 1].parentElement.style.display = "block";
+            dots[slideIndex2 - 1].classList.add("active");
+        }
+
+        // Auto advance slides for both slideshows
         let slideInterval = setInterval(() => {
             changeSlide(1);
         }, 4000);
 
-        // Clean up interval when page is hidden
+        let slideInterval2 = setInterval(() => {
+            changeSlide2(1);
+        }, 4000);
+
+        // Clean up intervals when page is hidden
         document.addEventListener('visibilitychange', () => {
             if (document.hidden) {
                 clearInterval(slideInterval);
+                clearInterval(slideInterval2);
             } else {
                 slideInterval = setInterval(() => {
                     changeSlide(1);
+                }, 4000);
+                slideInterval2 = setInterval(() => {
+                    changeSlide2(1);
                 }, 4000);
             }
         });
@@ -129,6 +185,7 @@ import Layout from '../layouts/Layout.astro';
         // Initialize slides when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
             showSlides(slideIndex);
+            showSlides2(slideIndex2);
         });
     </script>
 
@@ -256,6 +313,8 @@ import Layout from '../layouts/Layout.astro';
             grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
             margin-top: 2rem;
+            max-width: calc(100% - 4rem);
+            margin: 2rem auto;
         }
 
         .gallery-item {
@@ -266,14 +325,8 @@ import Layout from '../layouts/Layout.astro';
             transition: transform 0.5s ease, box-shadow 0.5s ease;
         }
 
-        .gallery-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 30px rgba(139, 0, 0, 0.2);
-        }
-
         .gallery-item.large {
             grid-column: span 2;
-            height: 500px;
         }
 
         .gallery-item img {
@@ -314,33 +367,38 @@ import Layout from '../layouts/Layout.astro';
             opacity: 0.9;
         }
 
+        .slideshows-section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .slideshow-wrapper {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            width: 100%;
+        }
+
         .slideshow-container {
             position: relative;
             width: 100%;
-            height: 100%;
-            overflow: hidden;
             border-radius: 20px;
         }
 
         .slide {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
             display: none;
         }
 
         .slide.active {
-            opacity: 1;
             display: block;
         }
 
         .slide img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
             border-radius: 20px;
+            display: block;
         }
 
         .fade {
