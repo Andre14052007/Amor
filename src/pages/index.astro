@@ -28,8 +28,6 @@ import Layout from '../layouts/Layout.astro';
                     <div class="slide fade">
                         <img class="mySlides" src="/cde01ef0-3c39-47cc-baa0-e8b0348c5816.JPG" alt="Outro Momento" loading="lazy" />
                     </div>
-                    <button class="slide-nav prev" onclick="changeSlide(-1)">❮</button>
-                    <button class="slide-nav next" onclick="changeSlide(1)">❯</button>
                     <div class="dots-container">
                         <span class="dot" onclick="currentSlide(1)"></span>
                         <span class="dot" onclick="currentSlide(2)"></span>
@@ -47,8 +45,6 @@ import Layout from '../layouts/Layout.astro';
                     <div class="slide fade">
                         <img class="mySlides2" src="/d2d1f3bb-c87b-4ac2-9044-76a39a4b26af.JPG" alt="Outro Momento" loading="lazy" />
                     </div>
-                    <button class="slide-nav prev" onclick="changeSlide2(-1)">❮</button>
-                    <button class="slide-nav next" onclick="changeSlide2(1)">❯</button>
                     <div class="dots-container">
                         <span class="dot2" onclick="currentSlide2(1)"></span>
                         <span class="dot2" onclick="currentSlide2(2)"></span>
@@ -411,29 +407,6 @@ import Layout from '../layouts/Layout.astro';
             to {opacity: 1}
         }
 
-        .slide-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.8);
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.2rem;
-            z-index: 2;
-            transition: all 0.3s ease;
-        }
-
-        .slide-nav:hover {
-            background: white;
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .prev { left: 20px; }
-        .next { right: 20px; }
-
         .dots-container {
             position: absolute;
             bottom: 20px;
@@ -554,11 +527,6 @@ import Layout from '../layouts/Layout.astro';
 
             .overlay p {
                 font-size: 1rem;
-            }
-
-            .slide-nav {
-                padding: 0.8rem;
-                font-size: 1.2rem;
             }
 
             .dots-container {

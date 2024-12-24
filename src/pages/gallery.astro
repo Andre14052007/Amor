@@ -3,10 +3,11 @@ import Layout from '../layouts/Layout.astro';
 
 const images = [
     { src: '/27087932-D930-4596-B06E-5527FDAFE560.JPG', alt: 'Andre', caption: 'Meu Amor' },
-    { src: '/IMG_4618.jpg', alt: 'Barbara', caption: 'Meu Tudo' },
-    { src: '/IMG_4610.jpg', alt: 'Us Together', caption: 'Nós Juntos' },
-    { src: '/704daa17-2da5-48c1-ba24-b06eb6daf466.JPG', alt: 'Romantic Moment', caption: 'Memórias do Pôr do Sol' },
-    { src: '/EDF40421-1EF7-450E-B798-F8287825DBFD.JPG', alt: 'Adventure', caption: 'Parque de àguaaaaaaa' }
+    { src: '/IMG_4618.jpg', alt: 'Barbara', caption: 'Meu Bem' },
+    { src: '/IMG_4610.jpg', alt: 'Us Together', caption: 'Nois Juntos' },
+    { src: '/704daa17-2da5-48c1-ba24-b06eb6daf466.JPG', alt: 'Romantic Moment', caption: 'Pôr do Sol' },
+    { src: '/EDF40421-1EF7-450E-B798-F8287825DBFD.JPG', alt: 'Adventure', caption: 'Parque de àguaaaaaaa' },
+    { src: '/IMG_4445.jpg', alt: 'Moment', caption: 'Halloween' }
 ];
 ---
 
@@ -28,7 +29,6 @@ const images = [
                             <img src={image.src} alt={image.alt} class="gallery-image" onclick={`openLightbox(${index})`} />
                             <div class="image-overlay">
                                 <p class="image-caption">{image.caption}</p>
-                                <button class="view-btn" onclick={`openLightbox(${index})`}>Ver Foto</button>
                             </div>
                         </div>
                     </div>
@@ -238,22 +238,6 @@ const images = [
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     }
 
-    .view-btn {
-        background: linear-gradient(135deg, var(--love-pink), var(--romantic-pink));
-        border: none;
-        padding: 0.8rem 1.5rem;
-        color: white;
-        border-radius: 25px;
-        cursor: pointer;
-        font-size: 1rem;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .view-btn:hover {
-        transform: scale(1.05);
-        box-shadow: 0 5px 15px rgba(255, 182, 193, 0.4);
-    }
-
     .lightbox {
         display: none;
         position: fixed;
@@ -415,11 +399,6 @@ const images = [
 
         .image-caption {
             font-size: 1rem;
-        }
-
-        .view-btn {
-            padding: 0.6rem 1.2rem;
-            font-size: 0.9rem;
         }
 
         .nav-btn {
