@@ -91,12 +91,23 @@ const images = [
     }
 
     function closeLightbox() {
-        const lightbox = document.getElementById('lightbox');
-        if (lightbox) {
-            lightbox.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
+        document.getElementById('lightbox').style.display = 'none';
+        document.body.style.overflow = 'auto';
     }
+
+    // Initialize gallery after DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+        // Re-initialize galleryImages array
+        const images = Array.from(document.querySelectorAll('.gallery-image'));
+        galleryImages.length = 0;
+        images.forEach(img => {
+            galleryImages.push({
+                src: img.getAttribute('src'),
+                alt: img.getAttribute('alt'),
+                caption: img.closest('.gallery-item').querySelector('.image-caption').textContent
+            });
+        });
+    });
 
     document.addEventListener('keydown', (e) => {
         const lightbox = document.getElementById('lightbox');
